@@ -1,0 +1,197 @@
+[gd_scene load_steps=11 format=3 uid="uid://bukq8oglhq7xv"]
+
+[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_7r5bq"]
+[ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
+size = Vector2(4, 14)
+
+[sub_resource type="Animation" id="Animation_b737v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(5, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_2hxwp"]
+resource_name = "Walk_Down"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 0), Vector2i(4, 2), Vector2i(4, 1), Vector2i(4, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15)]
+}
+
+[sub_resource type="Animation" id="Animation_4gmvh"]
+resource_name = "Walk_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(-1, -12), Vector2(0, -12), Vector2(-1, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_fy1ef"]
+resource_name = "Walk_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, -12), Vector2(-1, -12)]
+}
+
+[sub_resource type="Animation" id="Animation_p55hy"]
+resource_name = "Walk_Up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, -15), Vector2(2, -15), Vector2(1, -15), Vector2(1, -15)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbgmm"]
+_data = {
+"RESET": SubResource("Animation_b737v"),
+"Walk_Down": SubResource("Animation_2hxwp"),
+"Walk_Left": SubResource("Animation_4gmvh"),
+"Walk_Right": SubResource("Animation_fy1ef"),
+"Walk_Up": SubResource("Animation_p55hy")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lg4vl"]
+radius = 5.0
+height = 24.0
+
+[node name="Goblin" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_7r5bq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+z_index = 4
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_gybas")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("2_kxsi4")
+offset = Vector2(0, -16)
+hframes = 6
+vframes = 4
+frame = 23
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fbgmm")
+}
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-2, -15)
+shape = SubResource("CapsuleShape2D_lg4vl")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
