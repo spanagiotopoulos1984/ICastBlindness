@@ -1,9 +1,4 @@
-extends Node
-
-class_name State
-
-@onready var debug = owner.find_child("Debug")
-@onready var goblin = owner.get_parent().find_child("Goblin")
+extends GoblinState
 
 func _ready():
 	set_physics_process(false)
@@ -20,3 +15,6 @@ func transition():
 func _physics_process(_delta):
 	transition()
 	debug.text = name
+
+func create_trail():
+	pass

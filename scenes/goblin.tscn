@@ -1,7 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bukq8oglhq7xv"]
+[gd_scene load_steps=32 format=3 uid="uid://bukq8oglhq7xv"]
 
-[ext_resource type="Script" path="res://scripts/goblin.gd" id="1_7r5bq"]
+[ext_resource type="Script" path="res://scripts/Goblin.gd" id="1_t2vgp"]
 [ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
+[ext_resource type="Script" path="res://scripts/GoblinStateMachine.gd" id="3_5qqeg"]
+[ext_resource type="Script" path="res://scripts/goblin_states/CastingState.gd" id="4_ljbmm"]
+[ext_resource type="Script" path="res://scripts/goblin_states/MovingState.gd" id="5_a77r2"]
+[ext_resource type="Script" path="res://scripts/goblin_states/IdleState.gd" id="6_png0a"]
+[ext_resource type="Script" path="res://scripts/goblin_states/HidingIdleState.gd" id="7_anx6c"]
+[ext_resource type="Script" path="res://scripts/goblin_states/HidingMovingState.gd" id="8_4sv6r"]
+[ext_resource type="Script" path="res://scripts/goblin_states/BoxIdleState.gd" id="9_6d8d4"]
+[ext_resource type="Script" path="res://scripts/goblin_states/BoxMovingState.gd" id="10_08tvj"]
+[ext_resource type="Script" path="res://scripts/goblin_states/GoblinState.gd" id="11_66l13"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
 size = Vector2(4, 14)
@@ -20,21 +29,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(5, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-2, -15)]
-}
 
 [sub_resource type="Animation" id="Animation_2hxwp"]
-resource_name = "Walk_Down"
+resource_name = "Normal_Walk_Down"
 length = 0.8
 loop_mode = 1
 step = 0.0
@@ -45,26 +42,14 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(4, 0), Vector2i(4, 2), Vector2i(4, 1), Vector2i(4, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15), Vector2(-1, -15)]
+"values": [Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_4gmvh"]
-resource_name = "Walk_Left"
+resource_name = "Normal_Walk_Left"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -77,23 +62,11 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2(-1, -12), Vector2(0, -12), Vector2(-1, -12)]
+"values": [Vector2i(6, 0), Vector2i(6, 1), Vector2i(6, 2), Vector2i(6, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_fy1ef"]
-resource_name = "Walk_Right"
+resource_name = "Normal_Walk_Right"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -108,21 +81,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2(0, -12), Vector2(-1, -12)]
-}
 
 [sub_resource type="Animation" id="Animation_p55hy"]
-resource_name = "Walk_Up"
+resource_name = "Normal_Walk_Up"
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -137,38 +98,245 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id="Animation_8yip2"]
+resource_name = "Normal_Walk_Up_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(1, -15), Vector2(2, -15), Vector2(1, -15), Vector2(1, -15)]
+"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_4dets"]
+resource_name = "Normal_Walk_Down_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_s8rdl"]
+resource_name = "Normal_Walk_Down_Left"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_oiv3s"]
+resource_name = "Normal_Walk_Up_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 0), Vector2i(7, 1), Vector2i(7, 2), Vector2i(7, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_aexnt"]
+resource_name = "Hiding_Walk_Down"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1.07177, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 4), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_i8k8c"]
+resource_name = "Hiding_Walk_Down_Left"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6), Vector2i(5, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_6wv5e"]
+resource_name = "Hiding_Walk_Down_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 4), Vector2i(3, 5), Vector2i(3, 6), Vector2i(3, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_jknxn"]
+resource_name = "Hiding_Walk_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(6, 4), Vector2i(6, 5), Vector2i(6, 6), Vector2i(6, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_lhhka"]
+resource_name = "Hiding_Walk_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 4), Vector2i(2, 5), Vector2i(2, 6), Vector2i(2, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_xcdl2"]
+resource_name = "Hiding_Walk_Up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_r278c"]
+resource_name = "Hiding_Walk_Up_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 4), Vector2i(7, 5), Vector2i(7, 6), Vector2i(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_m85vs"]
+resource_name = "Hiding_Walk_Up_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 4), Vector2i(1, 5), Vector2i(1, 6), Vector2i(1, 7)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbgmm"]
 _data = {
-"RESET": SubResource("Animation_b737v"),
-"Walk_Down": SubResource("Animation_2hxwp"),
-"Walk_Left": SubResource("Animation_4gmvh"),
-"Walk_Right": SubResource("Animation_fy1ef"),
-"Walk_Up": SubResource("Animation_p55hy")
+"Hiding_Walk_Down": SubResource("Animation_aexnt"),
+"Hiding_Walk_Down_Left": SubResource("Animation_i8k8c"),
+"Hiding_Walk_Down_Right": SubResource("Animation_6wv5e"),
+"Hiding_Walk_Left": SubResource("Animation_jknxn"),
+"Hiding_Walk_Right": SubResource("Animation_lhhka"),
+"Hiding_Walk_Up": SubResource("Animation_xcdl2"),
+"Hiding_Walk_Up_Left": SubResource("Animation_r278c"),
+"Hiding_Walk_Up_Right": SubResource("Animation_m85vs"),
+"Normal_Walk_Down": SubResource("Animation_2hxwp"),
+"Normal_Walk_Down_Left": SubResource("Animation_s8rdl"),
+"Normal_Walk_Down_Right": SubResource("Animation_4dets"),
+"Normal_Walk_Left": SubResource("Animation_4gmvh"),
+"Normal_Walk_Right": SubResource("Animation_fy1ef"),
+"Normal_Walk_Up": SubResource("Animation_p55hy"),
+"Normal_Walk_Up_Left": SubResource("Animation_oiv3s"),
+"Normal_Walk_Up_Right": SubResource("Animation_8yip2"),
+"RESET": SubResource("Animation_b737v")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lg4vl"]
-radius = 5.0
-height = 24.0
+[sub_resource type="LabelSettings" id="LabelSettings_tcevd"]
+font_size = 12
+font_color = Color(3.36915e-06, 0, 0.822498, 1)
 
-[node name="Goblin" type="CharacterBody2D"]
+[node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 texture_filter = 1
-script = ExtResource("1_7r5bq")
+script = ExtResource("1_t2vgp")
+animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 z_index = 4
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_gybas")
@@ -178,20 +346,113 @@ z_index = 1
 y_sort_enabled = true
 texture = ExtResource("2_kxsi4")
 offset = Vector2(0, -16)
-hframes = 6
-vframes = 4
-frame = 23
+hframes = 8
+vframes = 8
+frame = 29
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fbgmm")
 }
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_mask = 3
+[node name="GolbinStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_5qqeg")
+starting_state = NodePath("IdleState")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-2, -15)
-shape = SubResource("CapsuleShape2D_lg4vl")
+[node name="CastingState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("4_ljbmm")
+casting_state = NodePath(".")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath("../BoxMovingState")
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="MovingState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("5_a77r2")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath(".")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath("../BoxMovingState")
+animation_name = "Normal"
+
+[node name="IdleState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("6_png0a")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath(".")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath("../BoxMovingState")
+
+[node name="HidingIdleState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("7_anx6c")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath(".")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath("../BoxMovingState")
+animation_name = "Hiding"
+
+[node name="HidingMovingState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("8_4sv6r")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath(".")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath("../BoxMovingState")
+
+[node name="BoxIdleState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("9_6d8d4")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath(".")
+box_moving_state = NodePath("../BoxMovingState")
+
+[node name="BoxMovingState" type="Node" parent="GolbinStateMachine" node_paths=PackedStringArray("casting_state", "moving_state", "idle_state", "hiding_idle_state", "hiding_moving_state", "box_idle_state", "box_moving_state")]
+script = ExtResource("10_08tvj")
+casting_state = NodePath("../CastingState")
+moving_state = NodePath("../MovingState")
+idle_state = NodePath("../IdleState")
+hiding_idle_state = NodePath("../HidingIdleState")
+hiding_moving_state = NodePath("../HidingMovingState")
+box_idle_state = NodePath("../BoxIdleState")
+box_moving_state = NodePath(".")
+
+[node name="GoblinState" type="Node" parent="GolbinStateMachine"]
+script = ExtResource("11_66l13")
+
+[node name="StateDebugText" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -47.0
+offset_right = 20.0
+offset_bottom = -30.0
+label_settings = SubResource("LabelSettings_tcevd")
+
+[node name="MarkerCreationTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 1.5
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 4
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_gybas")
+
+[connection signal="timeout" from="MarkerCreationTimer" to="." method="_on_marker_creation_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="GolbinStateMachine" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="GolbinStateMachine" method="_on_area_2d_area_exited"]

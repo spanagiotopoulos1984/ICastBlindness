@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct78qixpr4kxk"]
+[gd_scene load_steps=8 format=3 uid="uid://ct78qixpr4kxk"]
 
 [ext_resource type="PackedScene" uid="uid://bukq8oglhq7xv" path="res://scenes/goblin.tscn" id="1_p1cos"]
 [ext_resource type="Texture2D" uid="uid://bpxwebgh52mw6" path="res://textures/tilemaps/forest_tiles.png" id="2_2ym8x"]
 [ext_resource type="Script" path="res://scripts/FollowCamera.gd" id="3_38gpy"]
-[ext_resource type="PackedScene" uid="uid://cbx0abje6ceii" path="res://scenes/metagnome.tscn" id="4_nbej5"]
+[ext_resource type="PackedScene" uid="uid://cbx0abje6ceii" path="res://scenes/gnome.tscn" id="4_nbej5"]
+[ext_resource type="PackedScene" uid="uid://crdanbkgx6amw" path="res://scenes/shadow_area.tscn" id="5_bsea5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yydf"]
 texture = ExtResource("2_2ym8x")
@@ -572,3 +573,37 @@ position = Vector2(99, 81)
 
 [node name="Marker2D2" type="Marker2D" parent="TileMap/MarkerGroup"]
 position = Vector2(627, 616)
+
+[node name="ShadowAreas" type="Node" parent="TileMap"]
+
+[node name="ShadowArea" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(246, 388)
+scale = Vector2(4.95274, -3.85857)
+
+[node name="ShadowArea2" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(222, 574)
+scale = Vector2(4.48, 4.01827)
+
+[node name="ShadowArea3" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(543, 154)
+scale = Vector2(-4.22326, 3.91402)
+
+[node name="ShadowArea4" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(487, 297)
+scale = Vector2(2.3884, -3.04856)
+
+[node name="ShadowArea5" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(302, 127)
+scale = Vector2(5.83826, 4.79058)
+
+[node name="ShadowArea6" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(545, 392)
+scale = Vector2(-3.41866, -3.34661)
+
+[node name="ShadowArea7" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(384, 465)
+scale = Vector2(3.39147, 4.0266)
+
+[node name="ShadowArea8" parent="TileMap/ShadowAreas" instance=ExtResource("5_bsea5")]
+position = Vector2(505, 536)
+scale = Vector2(3.69665, 2.85766)

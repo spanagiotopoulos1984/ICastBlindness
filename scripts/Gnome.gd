@@ -1,10 +1,11 @@
-extends CharacterBody2D
+class_name Gnome
+extends AnimatedEntity
 
-@export var speed: int = 80
 @export var limit: float = 2
 
-@onready var animation = $AnimationPlayer
 @onready var patrol_timer = $PlayerSeekingTimer
+
+@onready var state_machine = $GnomeStateMachine
 
 # Used to initialize a point for our Metagnomes to patrol.
 @export var start_marker: Marker2D
@@ -17,6 +18,7 @@ var chase_player :bool = false
 
 
 func _ready():
+	state_machine.init(self)
 	starting_position = start_marker.global_position
 	end_position = end_marker.global_position
 	next_position = end_position
@@ -52,24 +54,24 @@ func update_velocity():
 # If time permits, I will refactor into a common class.
 func updateAnimation():
 	if velocity.y > 0 and velocity.x > 0:
-		animation.play("Walk_Down_Right")
+		animationPlayer.play("Walk_Down_Right")
 	elif velocity.y > 0 and velocity.x < 0:
-		animation.play("Walk_Down_Left")
+		animationPlayer.play("Walk_Down_Left")
 	elif velocity.y > 0 and velocity.x == 0:
-		animation.play("Walk_Down")
+		animationPlayer.play("Walk_Down")
 	elif velocity.y == 0 and velocity.x > 0:
-		animation.play("Walk_Right")
+		animationPlayer.play("Walk_Right")
 	elif velocity.y == 0 and velocity.x < 0:
-		animation.play("Walk_Left")
+		animationPlayer.play("Walk_Left")
 	elif velocity.y < 0 and velocity.x > 0:
-		animation.play("Walk_Down_Right")
+		animationPlayer.play("Walk_Down_Right")
 	elif velocity.y < 0 and velocity.x < 0:
-		animation.play("Walk_Down_Left")
+		animationPlayer.play("Walk_Down_Left")
 	elif velocity.y < 0 and velocity.x == 0:
-		animation.play("Walk_Down")
+		animationPlayer.play("Walk_Down")
 	else:
-		if animation.is_playing():
-			animation.stop()
+		if animationPlayer.is_playing():
+			animationPlayer.stop()
 
 func _physics_process(_delta):
 	update_velocity()
@@ -82,5 +84,4 @@ func _on_player_seeking_timer_timeout():
 
 
 func _on_vision_detection_zone_body_entered(body):
-	
 	pass # Replace with function body.
