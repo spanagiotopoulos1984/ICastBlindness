@@ -24,4 +24,5 @@ func _physics_process(delta):
 # easy control of player states such as hiding inside the box or being in a 
 # shadow area.
 func _on_marker_creation_timer_timeout():
-	state_machine.create_trail()
+	var goblin_state_machine = state_machine as GoblinStateMachine
+	goblin_state_machine.create_trail()
