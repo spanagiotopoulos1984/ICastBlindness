@@ -32,10 +32,12 @@ func create_trail():
 func _on_area_2d_area_entered(area):
 	if area.get_parent().name == "ShadowAreas":
 		for state in get_children():
-			state.is_in_shadows = true
+			var goblin_state = state as GoblinState
+			goblin_state.is_in_shadows = true
 
 
 func _on_area_2d_area_exited(area):
 	if area.get_parent().name == "ShadowAreas":
 		for state in get_children():
-			state.is_in_shadows = false
+			var goblin_state = state as GoblinState
+			goblin_state.is_in_shadows = false

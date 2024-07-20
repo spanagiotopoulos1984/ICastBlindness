@@ -1,16 +1,17 @@
-[gd_scene load_steps=23 format=3 uid="uid://cbx0abje6ceii"]
+[gd_scene load_steps=32 format=3 uid="uid://cbx0abje6ceii"]
 
 [ext_resource type="Script" path="res://scripts/Gnome.gd" id="1_mv3hp"]
 [ext_resource type="Texture2D" uid="uid://cgsyhesk1xlbc" path="res://textures/spritesheets/gnome.png" id="2_8js2s"]
 [ext_resource type="Script" path="res://scripts/GnomeStateMachine.gd" id="3_lhstt"]
-[ext_resource type="Script" path="res://scripts/gnome_states/PatrolingState.gd" id="4_nev1w"]
-[ext_resource type="Script" path="res://scripts/gnome_states/ChasingState.gd" id="5_ddoay"]
+[ext_resource type="Script" path="res://scripts/gnome_states/ChaseState.gd" id="5_v1mvo"]
 [ext_resource type="Script" path="res://scripts/gnome_states/BlindedState.gd" id="6_fjeo1"]
 [ext_resource type="Script" path="res://scripts/gnome_states/FrozenState.gd" id="7_pr2cf"]
-[ext_resource type="Script" path="res://scripts/gnome_states/IdleState.gd" id="8_pblf4"]
+[ext_resource type="Script" path="res://scripts/gnome_states/PatrolState.gd" id="8_3enkk"]
+[ext_resource type="Script" path="res://scripts/gnome_states/GnomeIdleState.gd" id="8_b1qx7"]
+[ext_resource type="Script" path="res://scripts/gnome_states/ReturnToPatrolState.gd" id="9_cgb8y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_57pno"]
-size = Vector2(8, 19)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjrjc"]
+radius = 7.07107
 
 [sub_resource type="LabelSettings" id="LabelSettings_6frmb"]
 line_spacing = 2.0
@@ -19,54 +20,6 @@ font_color = Color(0.713726, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_s3wnw"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, -13)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_ynwrd"]
 resource_name = "Walk_Down"
@@ -87,62 +40,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:scale")
+tracks/1/path = NodePath("NearDetectionArea:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-1, -13), Vector2(-1, -13), Vector2(-1, -13), Vector2(-1, -13), Vector2(-1, -13)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("SoundDetectionZone:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.785398, 0.785398]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-9, 8), Vector2(-9, 8)]
 }
 
 [sub_resource type="Animation" id="Animation_eugte"]
@@ -164,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SoundDetectionZone:rotation")
+tracks/1/path = NodePath("NearDetectionArea:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -172,54 +77,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-1, -13), Vector2(-1, -13), Vector2(-1, -12), Vector2(2, -13), Vector2(-1, -13)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-9, 0), Vector2(-9, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.5708, 1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_cthlp"]
@@ -238,54 +95,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, -12), Vector2(1, -12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, 9), Vector2(0, 9)]
-}
 
 [sub_resource type="Animation" id="Animation_7pm1c"]
 resource_name = "Walk_Left"
@@ -302,54 +111,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-1, -12), Vector2(-1, -12), Vector2(-1, -12), Vector2(0, -12), Vector2(0, -12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [2.35619, 2.35619]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-6, -7)]
 }
 
 [sub_resource type="Animation" id="Animation_5vrsr"]
@@ -368,54 +129,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, -12), Vector2(1, -12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(6, 7), Vector2(6, 7)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [5.49779]
-}
 
 [sub_resource type="Animation" id="Animation_6vmly"]
 resource_name = "Walk_Up"
@@ -432,42 +145,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, -15), Vector2(1, -15), Vector2(1, -15), Vector2(1, -15)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(8, -6)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [3.92699]
 }
 
 [sub_resource type="Animation" id="Animation_y4rdu"]
@@ -486,54 +163,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(7, 0), Vector2i(7, 1), Vector2i(7, 2), Vector2i(7, 3)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2(-1, -12), Vector2(-1, -12), Vector2(-1, -12), Vector2(0, -12), Vector2(0, -12)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(0, -9), Vector2(0, -9)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [3.14159, 3.14159]
-}
 
 [sub_resource type="Animation" id="Animation_uhbl5"]
 resource_name = "Walk_Up_Right"
@@ -551,45 +180,207 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
 }
+
+[sub_resource type="Animation" id="Animation_dowm2"]
+resource_name = "Alert_Walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 4), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 7)]
+}
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/1/path = NodePath("NearDetectionArea:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p1ltb"]
+resource_name = "Alert_Walk_Down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(1, -15), Vector2(1, -15), Vector2(1, -15), Vector2(1, -15)]
+"update": 1,
+"values": [Vector2i(4, 4), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 7)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("VisionDetectionZone/CollisionPolygon2D:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(10, 0), Vector2(10, 0)]
+"values": [0.0, 0.0]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("VisionDetectionZone/CollisionPolygon2D:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
+
+[sub_resource type="Animation" id="Animation_6dw2g"]
+resource_name = "Alert_Walk_Down_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6), Vector2i(5, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [4.71239, 4.71239]
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_b8233"]
+resource_name = "Alert_Walk_Down_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 4), Vector2i(3, 5), Vector2i(3, 6), Vector2i(3, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_oiedc"]
+resource_name = "Alert_Walk_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6), Vector2i(5, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_43tdn"]
+resource_name = "Alert_Walk_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 4), Vector2i(2, 5), Vector2i(2, 6), Vector2i(2, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_2gk6s"]
+resource_name = "Alert_Walk_Up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_o0c13"]
+resource_name = "Alert_Walk_Up_Left"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 4), Vector2i(7, 5), Vector2i(7, 6), Vector2i(7, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_sd2nj"]
+resource_name = "Alert_Walk_Up_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 4), Vector2i(1, 5), Vector2i(1, 6), Vector2i(1, 7)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3cagp"]
 _data = {
+"Alert_Walk_Down": SubResource("Animation_p1ltb"),
+"Alert_Walk_Down_Left": SubResource("Animation_6dw2g"),
+"Alert_Walk_Down_Right": SubResource("Animation_b8233"),
+"Alert_Walk_Left": SubResource("Animation_oiedc"),
+"Alert_Walk_Right": SubResource("Animation_43tdn"),
+"Alert_Walk_Up": SubResource("Animation_2gk6s"),
+"Alert_Walk_Up_Left": SubResource("Animation_o0c13"),
+"Alert_Walk_Up_Right": SubResource("Animation_sd2nj"),
+"Alert_Walk_down": SubResource("Animation_dowm2"),
 "RESET": SubResource("Animation_s3wnw"),
 "Walk_Down": SubResource("Animation_ynwrd"),
 "Walk_Down_Left": SubResource("Animation_eugte"),
@@ -601,33 +392,25 @@ _data = {
 "Walk_Up_Right": SubResource("Animation_uhbl5")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sypx6"]
-radius = 3.0
-height = 24.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgqdx"]
 radius = 54.4518
 
 [node name="Gnome" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 z_index = 1
 y_sort_enabled = true
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("1_mv3hp")
+speed = 80
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -12.5)
-shape = SubResource("RectangleShape2D_57pno")
+shape = SubResource("CircleShape2D_mjrjc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 y_sort_enabled = true
 texture = ExtResource("2_8js2s")
-offset = Vector2(0, -16)
 hframes = 8
-vframes = 4
-frame = 23
+vframes = 8
 
 [node name="Debug" type="Label" parent="Sprite2D"]
 anchors_preset = -1
@@ -648,46 +431,74 @@ libraries = {
 "": SubResource("AnimationLibrary_3cagp")
 }
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="NearDetectionArea" type="Area2D" parent="."]
+position = Vector2(-2, 21)
+scale = Vector2(1.79789, 1.79789)
+collision_layer = 4
+collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-1, -13)
-shape = SubResource("CapsuleShape2D_sypx6")
-
-[node name="SoundDetectionZone" type="Area2D" parent="."]
-
-[node name="SoundDetectionArea" type="CollisionShape2D" parent="SoundDetectionZone"]
+[node name="NearDetectionCollision" type="CollisionShape2D" parent="NearDetectionArea"]
 position = Vector2(1, -12)
 shape = SubResource("CircleShape2D_wgqdx")
-debug_color = Color(1.15514e-06, 0.650548, 0.0852368, 0.42)
-
-[node name="VisionDetectionZone" type="Area2D" parent="."]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="VisionDetectionZone"]
-polygon = PackedVector2Array(1, -9, 1, 279, 279, -11)
-
-[node name="PlayerSeekingTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
+debug_color = Color(0.842376, 0.369429, 0.255676, 0.42)
 
 [node name="GnomeStateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("3_lhstt")
-starting_state = NodePath("PatrollingState")
+starting_state = NodePath("PatrolState")
 
-[node name="PatrollingState" type="Node" parent="GnomeStateMachine"]
-script = ExtResource("4_nev1w")
-
-[node name="ChasingState" type="Node" parent="GnomeStateMachine"]
-script = ExtResource("5_ddoay")
-
-[node name="BlindedState" type="Node" parent="GnomeStateMachine"]
+[node name="BlindedState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
 script = ExtResource("6_fjeo1")
+blinded_state = NodePath(".")
+chasing_state = NodePath("../ChasingState")
+frozen_state = NodePath("../FrozenState")
+gnome_idle_state = NodePath("../GnomeIdleState")
+patroling_state = NodePath("../PatrolState")
+return_to_patrol_state = NodePath("../ReturnToPatrolState")
 
-[node name="FrozenState" type="Node" parent="GnomeStateMachine"]
+[node name="ChasingState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
+script = ExtResource("5_v1mvo")
+blinded_state = NodePath("../BlindedState")
+chasing_state = NodePath(".")
+frozen_state = NodePath("../FrozenState")
+gnome_idle_state = NodePath("../GnomeIdleState")
+patroling_state = NodePath("../PatrolState")
+return_to_patrol_state = NodePath("../ReturnToPatrolState")
+
+[node name="FrozenState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
 script = ExtResource("7_pr2cf")
+blinded_state = NodePath("../BlindedState")
+chasing_state = NodePath("../ChasingState")
+frozen_state = NodePath(".")
+gnome_idle_state = NodePath("../GnomeIdleState")
+patroling_state = NodePath("../PatrolState")
+return_to_patrol_state = NodePath("../ReturnToPatrolState")
 
-[node name="IdleState" type="Node" parent="GnomeStateMachine"]
-script = ExtResource("8_pblf4")
+[node name="GnomeIdleState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
+script = ExtResource("8_b1qx7")
+blinded_state = NodePath("../BlindedState")
+chasing_state = NodePath("../ChasingState")
+frozen_state = NodePath("../FrozenState")
+gnome_idle_state = NodePath(".")
+patroling_state = NodePath("../PatrolState")
+return_to_patrol_state = NodePath("../ReturnToPatrolState")
+
+[node name="PatrolState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
+script = ExtResource("8_3enkk")
+blinded_state = NodePath("../BlindedState")
+chasing_state = NodePath("../ChasingState")
+frozen_state = NodePath("../FrozenState")
+gnome_idle_state = NodePath("../GnomeIdleState")
+patroling_state = NodePath(".")
+return_to_patrol_state = NodePath("../ReturnToPatrolState")
+
+[node name="ReturnToPatrolState" type="Node" parent="GnomeStateMachine" node_paths=PackedStringArray("blinded_state", "chasing_state", "frozen_state", "gnome_idle_state", "patroling_state", "return_to_patrol_state")]
+script = ExtResource("9_cgb8y")
+blinded_state = NodePath("../BlindedState")
+chasing_state = NodePath("../ChasingState")
+frozen_state = NodePath("../FrozenState")
+gnome_idle_state = NodePath("../GnomeIdleState")
+patroling_state = NodePath("../PatrolState")
+return_to_patrol_state = NodePath(".")
 
 [node name="StateDebugText" type="Label" parent="."]
 offset_left = -20.0
@@ -695,7 +506,5 @@ offset_top = -51.0
 offset_right = 20.0
 offset_bottom = -28.0
 
-[connection signal="body_entered" from="SoundDetectionZone" to="." method="_on_detection_zone_body_entered"]
-[connection signal="body_exited" from="SoundDetectionZone" to="." method="_on_detection_zone_body_exited"]
-[connection signal="body_entered" from="VisionDetectionZone" to="." method="_on_vision_detection_zone_body_entered"]
-[connection signal="timeout" from="PlayerSeekingTimer" to="." method="_on_player_seeking_timer_timeout"]
+[connection signal="area_entered" from="NearDetectionArea" to="GnomeStateMachine" method="_on_near_detection_area_area_entered"]
+[connection signal="area_exited" from="NearDetectionArea" to="GnomeStateMachine" method="_on_near_detection_area_area_exited"]

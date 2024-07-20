@@ -52,6 +52,7 @@ player_right={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="metagnome"
+2d_physics/layer_3="goblin_marker"
 
 [rendering]
 

@@ -1,17 +1,19 @@
-extends State
+class_name FrozenState
+extends GnomeState
 
-func _ready():
-	set_physics_process(false)
-	
-func enter():
-	set_physics_process(true	)
-	
-func exit():
-	set_physics_process(false)
-	
-func transition():
+func enter() -> void:
 	pass
-	
-func _physics_process(_delta):
-	transition()
 	debug.text = name
+	
+func exit() -> void:
+	pass
+	debug.text = ""
+	
+func process_input(event: InputEvent) -> State:
+	return null
+
+func process_frame(delta: float) -> State:
+	return null
+
+func process_physics(delta: float) -> State:
+	return null
