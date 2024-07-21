@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct78qixpr4kxk"]
+[gd_scene load_steps=10 format=3 uid="uid://ct78qixpr4kxk"]
 
 [ext_resource type="PackedScene" uid="uid://bukq8oglhq7xv" path="res://scenes/goblin.tscn" id="1_p1cos"]
 [ext_resource type="Texture2D" uid="uid://bpxwebgh52mw6" path="res://textures/tilemaps/forest_tiles.png" id="2_2ym8x"]
@@ -530,6 +530,9 @@ _data = {
 }
 point_count = 41
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uv4tb"]
+size = Vector2(665.794, 20)
+
 [node name="TestMap" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -609,3 +612,41 @@ rotation = 0.592365
 
 [node name="Gnome" parent="Enemies/Path2D/PathFollow2D" instance=ExtResource("4_nbej5")]
 position = Vector2(2.2333, 3.31849)
+
+[node name="Bounds" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Bounds"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Area2D"]
+position = Vector2(323, -11)
+shape = SubResource("RectangleShape2D_uv4tb")
+
+[node name="Area2D2" type="Area2D" parent="Bounds"]
+position = Vector2(-19, -3)
+rotation = 1.56623
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Area2D2"]
+position = Vector2(323.04, -664.531)
+shape = SubResource("RectangleShape2D_uv4tb")
+
+[node name="Area2D3" type="Area2D" parent="Bounds"]
+position = Vector2(-16.0868, -22.0135)
+rotation = 3.13245
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Area2D3"]
+position = Vector2(-330.819, -676.084)
+rotation = 0.00811724
+shape = SubResource("RectangleShape2D_uv4tb")
+
+[node name="Area2D4" type="Area2D" parent="Bounds"]
+position = Vector2(-16.0868, -22.0135)
+rotation = 3.13245
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/Area2D4"]
+position = Vector2(-4.91529, -347.073)
+rotation = 1.58131
+shape = SubResource("RectangleShape2D_uv4tb")

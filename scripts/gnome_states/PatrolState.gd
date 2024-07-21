@@ -8,17 +8,22 @@ func enter() -> void:
 	
 func exit() -> void:
 	debug.text = ""
-	for state in get_parent().get_children():
-		var gnome_state = state as GnomeState
-		print(gnome_state.name)
-		gnome_state.last_patrol_position = parent.global_position
-		#print("Last Patrol Point: ",last_patrol_position)
+	var gnome = parent as Gnome
+	gnome.last_patrol_position  = parent.global_position
 
 func process_frame(delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if is_detecting_goblin:
+	var gnome = parent as Gnome
+	
+	if gnome.is_frozen:
+		return frozen_state
+		
+	if gnome.is_blinded:
+		return blinded_state
+	
+	if gnome.is_detecting_goblin:
 		return chasing_state
 	else:
 		var gnome_parent = parent as Gnome
@@ -32,6 +37,8 @@ func process_physics(delta: float) -> State:
 
 func update_animation(velocity: Vector2):
 	var is_moving = true
+	var gnome = parent as Gnome
+	gnome.sprite.flip_h = velocity.x < 0
 	if(velocity.x > 0 and velocity.y > 0):
 		animation_name = "Walk_Down_Right"
 	elif(velocity.x > 0 and velocity.y == -1):
@@ -39,11 +46,11 @@ func update_animation(velocity: Vector2):
 	elif(velocity.x > 0 and velocity.y == 0):
 		animation_name = "Walk_Right"
 	elif(velocity.x < 0 and velocity.y > 0):
-		animation_name = "Walk_Down_Left"
+		animation_name = "Walk_Down_Right"
 	elif(velocity.x < 0 and velocity.y < 0):
-		animation_name = "Walk_Up_Left"
+		animation_name = "Walk_Up_Right"
 	elif(velocity.x < 0 and velocity.y == 0):
-		animation_name = "Walk_Left"
+		animation_name = "Walk_Right"
 	elif(velocity.x == 0 and velocity.y > 0):
 		animation_name = "Walk_Down"
 	elif(velocity.x == 0 and velocity.y < 0):

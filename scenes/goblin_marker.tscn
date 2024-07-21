@@ -5,6 +5,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hbxr4"]
 
 [node name="GoblinMarker" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_qnjwh")
 
 [node name="Location" type="Marker2D" parent="."]
@@ -14,11 +16,7 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 2
 shape = SubResource("CircleShape2D_hbxr4")
 

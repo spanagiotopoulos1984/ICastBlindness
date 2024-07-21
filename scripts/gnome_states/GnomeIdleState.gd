@@ -8,7 +8,9 @@ var timer: float
 
 func enter() -> void:
 	debug.text = name
-	timer = 3.0
+	timer = 1.5
+	parent.animationPlayer.stop()
+	
 	
 func exit() -> void:
 	debug.text = ""
@@ -20,11 +22,19 @@ func process_frame(delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if not is_detecting_goblin:
+	var gnome = parent as Gnome
+	
+	if gnome.is_frozen:
+		return frozen_state
+		
+	if gnome.is_blinded:
+		return blinded_state
+	
+	if not gnome.is_detecting_goblin:
 		timer -= 1.0 * delta
 	else:
 		return chasing_state
-	print(timer)
+	#print(timer)
 	if timer > 0:
 		return null
 	else:

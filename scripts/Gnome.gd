@@ -1,16 +1,21 @@
 class_name Gnome
 extends AnimatedEntity
 
-@onready var patrol_timer = $PlayerSeekingTimer
-
 @onready var state_machine = $GnomeStateMachine
 
 @onready var path_follow : PathFollow2D = $".."
 
-@onready var alert_timer : Timer = $AlertTiimer
+@export var is_frozen :bool = false
 
-# Required to disable the pesky rotation only on the image. Not the rest
-# of the nodes.
+@export var is_blinded: bool = false
+
+@export var is_detecting_goblin: bool = false
+
+@export var last_known_posititon: Vector2
+@export var last_patrol_position: Vector2
+
+# Used to flip animations on x-axis, and  to disable the pesky rotation only
+# on the image. Not the rest of the nodes.
 @onready var sprite = $Sprite2D
 
 func _ready():
@@ -18,3 +23,10 @@ func _ready():
 
 func _physics_process(delta):
 	state_machine.process_physics(delta)
+
+func _on_near_detection_area_area_entered(area):
+	is_detecting_goblin = true
+	last_known_posititon = area.global_position
+
+func _on_near_detection_area_area_exited(area):
+	is_detecting_goblin = false

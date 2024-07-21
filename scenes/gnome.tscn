@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cbx0abje6ceii"]
+[gd_scene load_steps=28 format=3 uid="uid://cbx0abje6ceii"]
 
 [ext_resource type="Script" path="res://scripts/Gnome.gd" id="1_mv3hp"]
 [ext_resource type="Texture2D" uid="uid://cgsyhesk1xlbc" path="res://textures/spritesheets/gnome.png" id="2_8js2s"]
@@ -11,204 +11,12 @@
 [ext_resource type="Script" path="res://scripts/gnome_states/ReturnToPatrolState.gd" id="9_cgb8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjrjc"]
-radius = 7.07107
+radius = 14.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_6frmb"]
 line_spacing = 2.0
 font_size = 14
 font_color = Color(0.713726, 0, 0, 1)
-
-[sub_resource type="Animation" id="Animation_s3wnw"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_ynwrd"]
-resource_name = "Walk_Down"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NearDetectionArea:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_eugte"]
-resource_name = "Walk_Down_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NearDetectionArea:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_cthlp"]
-resource_name = "Walk_Down_Right"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_7pm1c"]
-resource_name = "Walk_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(5, 0), Vector2i(5, 1), Vector2i(5, 2), Vector2i(5, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_5vrsr"]
-resource_name = "Walk_Right"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_6vmly"]
-resource_name = "Walk_Up"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_y4rdu"]
-resource_name = "Walk_Up_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(7, 0), Vector2i(7, 1), Vector2i(7, 2), Vector2i(7, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_uhbl5"]
-resource_name = "Walk_Up_Right"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_dowm2"]
-resource_name = "Alert_Walk_down"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(4, 4), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NearDetectionArea:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_p1ltb"]
 resource_name = "Alert_Walk_Down"
@@ -239,35 +47,6 @@ tracks/1/keys = {
 "values": [0.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_6dw2g"]
-resource_name = "Alert_Walk_Down_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6), Vector2i(5, 7)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NearDetectionArea:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 0.0]
-}
-
 [sub_resource type="Animation" id="Animation_b8233"]
 resource_name = "Alert_Walk_Down_Right"
 length = 0.8
@@ -283,23 +62,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(3, 4), Vector2i(3, 5), Vector2i(3, 6), Vector2i(3, 7)]
-}
-
-[sub_resource type="Animation" id="Animation_oiedc"]
-resource_name = "Alert_Walk_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(5, 4), Vector2i(5, 5), Vector2i(5, 6), Vector2i(5, 7)]
 }
 
 [sub_resource type="Animation" id="Animation_43tdn"]
@@ -336,23 +98,6 @@ tracks/0/keys = {
 "values": [Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7)]
 }
 
-[sub_resource type="Animation" id="Animation_o0c13"]
-resource_name = "Alert_Walk_Up_Left"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(7, 4), Vector2i(7, 5), Vector2i(7, 6), Vector2i(7, 7)]
-}
-
 [sub_resource type="Animation" id="Animation_sd2nj"]
 resource_name = "Alert_Walk_Up_Right"
 length = 0.8
@@ -370,25 +115,208 @@ tracks/0/keys = {
 "values": [Vector2i(1, 4), Vector2i(1, 5), Vector2i(1, 6), Vector2i(1, 7)]
 }
 
+[sub_resource type="Animation" id="Animation_dowm2"]
+resource_name = "Alert_Walk_down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 4), Vector2i(4, 5), Vector2i(4, 6), Vector2i(4, 7)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_eif0i"]
+resource_name = "Blinded"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_d1hf3"]
+resource_name = "Frozen"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 9), Vector2i(1, 9), Vector2i(2, 9), Vector2i(3, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_s3wnw"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_ynwrd"]
+resource_name = "Walk_Down"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NearDetectionArea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_cthlp"]
+resource_name = "Walk_Down_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_5vrsr"]
+resource_name = "Walk_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_6vmly"]
+resource_name = "Walk_Up"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_uhbl5"]
+resource_name = "Walk_Up_Right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3cagp"]
 _data = {
 "Alert_Walk_Down": SubResource("Animation_p1ltb"),
-"Alert_Walk_Down_Left": SubResource("Animation_6dw2g"),
 "Alert_Walk_Down_Right": SubResource("Animation_b8233"),
-"Alert_Walk_Left": SubResource("Animation_oiedc"),
 "Alert_Walk_Right": SubResource("Animation_43tdn"),
 "Alert_Walk_Up": SubResource("Animation_2gk6s"),
-"Alert_Walk_Up_Left": SubResource("Animation_o0c13"),
 "Alert_Walk_Up_Right": SubResource("Animation_sd2nj"),
 "Alert_Walk_down": SubResource("Animation_dowm2"),
+"Blinded": SubResource("Animation_eif0i"),
+"Frozen": SubResource("Animation_d1hf3"),
 "RESET": SubResource("Animation_s3wnw"),
 "Walk_Down": SubResource("Animation_ynwrd"),
-"Walk_Down_Left": SubResource("Animation_eugte"),
 "Walk_Down_Right": SubResource("Animation_cthlp"),
-"Walk_Left": SubResource("Animation_7pm1c"),
 "Walk_Right": SubResource("Animation_5vrsr"),
 "Walk_Up": SubResource("Animation_6vmly"),
-"Walk_Up_Left": SubResource("Animation_y4rdu"),
 "Walk_Up_Right": SubResource("Animation_uhbl5")
 }
 
@@ -398,6 +326,7 @@ radius = 54.4518
 [node name="Gnome" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
 z_index = 1
 y_sort_enabled = true
+collision_layer = 2
 script = ExtResource("1_mv3hp")
 speed = 80
 animationPlayer = NodePath("AnimationPlayer")
@@ -409,8 +338,9 @@ shape = SubResource("CircleShape2D_mjrjc")
 z_index = 1
 y_sort_enabled = true
 texture = ExtResource("2_8js2s")
-hframes = 8
-vframes = 8
+hframes = 5
+vframes = 10
+frame = 46
 
 [node name="Debug" type="Label" parent="Sprite2D"]
 anchors_preset = -1
@@ -434,7 +364,7 @@ libraries = {
 [node name="NearDetectionArea" type="Area2D" parent="."]
 position = Vector2(-2, 21)
 scale = Vector2(1.79789, 1.79789)
-collision_layer = 4
+collision_layer = 0
 collision_mask = 4
 
 [node name="NearDetectionCollision" type="CollisionShape2D" parent="NearDetectionArea"]
@@ -506,5 +436,5 @@ offset_top = -51.0
 offset_right = 20.0
 offset_bottom = -28.0
 
-[connection signal="area_entered" from="NearDetectionArea" to="GnomeStateMachine" method="_on_near_detection_area_area_entered"]
-[connection signal="area_exited" from="NearDetectionArea" to="GnomeStateMachine" method="_on_near_detection_area_area_exited"]
+[connection signal="area_entered" from="NearDetectionArea" to="." method="_on_near_detection_area_area_entered"]
+[connection signal="area_exited" from="NearDetectionArea" to="." method="_on_near_detection_area_area_exited"]

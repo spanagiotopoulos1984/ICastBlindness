@@ -1,6 +1,10 @@
 class_name GoblinState 
 extends State
 
+const ENUM = preload("res://scripts/Enum.gd")
+const DIRECTION = ENUM.Direction
+const CASTABLE = ENUM.CASTABLE_SPELL
+
 @export var casting_state: State
 @export var moving_state: State
 @export var idle_state: State
@@ -15,7 +19,9 @@ extends State
 # loading them on-demand.
 @onready var goblin_marker = preload("res://scenes/goblin_marker.tscn")
 
-var is_in_shadows: bool = false
+@onready var blindness_spell = preload("res://scenes/BlindnessSpellProjective.tscn")
+
+@onready var freeze_spell = preload("res://scenes/FreezeTrapSpell.tscn")
 
 func create_trail():
 	pass

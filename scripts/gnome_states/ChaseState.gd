@@ -22,13 +22,45 @@ func process_frame(delta: float) -> State:
 
 func process_physics(delta: float) -> State:
 	var gnome = parent as Gnome
-	if last_known_posititon:
+	
+	if gnome.is_blinded:
+		return blinded_state
+	
+	if gnome.last_known_posititon:
 		
-		if last_known_posititon.distance_to(gnome.global_position) <= MINIMUM_DISTANCE_TO_FOLLOW:
+		if gnome.last_known_posititon.distance_to(gnome.global_position) <= MINIMUM_DISTANCE_TO_FOLLOW:
 			return gnome_idle_state
 	
-		gnome.velocity = (last_known_posititon - gnome.global_position).normalized() * gnome.speed
+		gnome.velocity = (gnome.last_known_posititon - gnome.global_position).normalized() * gnome.speed
+		update_animation(gnome.velocity)
 		gnome.move_and_slide()
 		return null
 	else:
 		return patroling_state
+
+func update_animation(velocity: Vector2):
+	var is_moving = true
+	var gnome = parent as Gnome
+	gnome.sprite.flip_h = velocity.x < 0
+	if(velocity.x > 0 and velocity.y > 0):
+		animation_name = "Alert_Walk_Down_Right"
+	elif(velocity.x > 0 and velocity.y == -1):
+		animation_name = "Alert_Walk_Up_Right"
+	elif(velocity.x > 0 and velocity.y == 0):
+		animation_name = "Alert_Walk_Right"
+	elif(velocity.x < 0 and velocity.y > 0):
+		animation_name = "Alert_Walk_Down_Right"
+	elif(velocity.x < 0 and velocity.y < 0):
+		animation_name = "Alert_Walk_Up_Right"
+	elif(velocity.x < 0 and velocity.y == 0):
+		animation_name = "Alert_Walk_Right"
+	elif(velocity.x == 0 and velocity.y > 0):
+		animation_name = "Alert_Walk_Down"
+	elif(velocity.x == 0 and velocity.y < 0):
+		animation_name = "Alert_Walk_Up"
+	else:
+		is_moving = false
+	if is_moving:
+		parent.animationPlayer.play(animation_name)
+	else:
+		parent.animationPlayer.stop()

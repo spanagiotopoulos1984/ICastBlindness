@@ -24,20 +24,3 @@ func update_shadoow_state():
 func create_trail():
 	var gstate = current_state as GoblinState
 	current_state.create_trail()
-
-# Inelegant solutions to a simple problem. I will have to revisit how to
-# combine area 2D terrain collision detections and Character2D state machines.
-# For now, as long as it works, it stays.
-
-func _on_area_2d_area_entered(area):
-	if area.get_parent().name == "ShadowAreas":
-		for state in get_children():
-			var goblin_state = state as GoblinState
-			goblin_state.is_in_shadows = true
-
-
-func _on_area_2d_area_exited(area):
-	if area.get_parent().name == "ShadowAreas":
-		for state in get_children():
-			var goblin_state = state as GoblinState
-			goblin_state.is_in_shadows = false
