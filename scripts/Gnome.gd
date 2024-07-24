@@ -3,8 +3,6 @@ extends AnimatedEntity
 
 @onready var state_machine = $GnomeStateMachine
 
-@onready var path_follow : PathFollow2D = $".."
-
 @export var is_frozen :bool = false
 
 @export var is_blinded: bool = false
@@ -17,6 +15,8 @@ extends AnimatedEntity
 # Used to flip animations on x-axis, and  to disable the pesky rotation only
 # on the image. Not the rest of the nodes.
 @onready var sprite = $Sprite2D
+
+@export var path_to_follow : PathFollow2D
 
 func _ready():
 	state_machine.init(self)

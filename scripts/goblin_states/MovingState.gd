@@ -20,19 +20,21 @@ func process_input(event: InputEvent) -> State:
 	
 	var goblin = parent as Goblin
 	
-	if event:
-		if Input.is_action_just_pressed("Cast Blindness"):
-			goblin.spell_to_cast = CASTABLE.BLINDNESS
-			return casting_state
-		elif Input.is_action_just_pressed("Cast Freeze"):
-			goblin.spell_to_cast = CASTABLE.FREEZE
-			return casting_state
-		elif Input.is_action_just_pressed("Cast Sound"):
-			goblin.spell_to_cast = CASTABLE.SOUND
-			return casting_state
-		elif Input.is_action_just_pressed("Cast Unlock"):
-			goblin.spell_to_cast = CASTABLE.UNLOCK
-			return casting_state
+	if Input.is_action_just_pressed("Inventory"):
+		goblin.enter_or_exit_inventory_screen()
+		return null
+	elif Input.is_action_just_pressed("Cast Blindness"):
+		goblin.spell_to_cast = CASTABLE.BLINDNESS
+		return casting_state
+	elif Input.is_action_just_pressed("Cast Freeze"):
+		goblin.spell_to_cast = CASTABLE.FREEZE
+		return casting_state
+	elif Input.is_action_just_pressed("Cast Sound"):
+		goblin.spell_to_cast = CASTABLE.SOUND
+		return casting_state
+	elif Input.is_action_just_pressed("Cast Unlock"):
+		goblin.spell_to_cast = CASTABLE.UNLOCK
+		return casting_state
 			
 	goblin.spell_to_cast = CASTABLE.NONE
 	movement_direction = handle_user_input()

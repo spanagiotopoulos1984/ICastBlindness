@@ -27,11 +27,11 @@ func process_physics(delta: float) -> State:
 		return chasing_state
 	else:
 		var gnome_parent = parent as Gnome
-		var old_position = gnome_parent.sprite.global_position
-		gnome_parent.path_follow.progress += gnome_parent.speed * delta
+		gnome_parent.path_to_follow.progress += gnome_parent.speed * delta
 		gnome_parent.sprite.global_rotation  = 0
-		var new_position = gnome_parent.sprite.global_position
-		var velocity = new_position - old_position
+		var new_position = gnome_parent.global_position
+		var velocity = new_position - gnome_parent.last_known_posititon
+		gnome_parent.last_known_posititon = gnome_parent.global_position
 		update_animation(velocity)
 		return null
 

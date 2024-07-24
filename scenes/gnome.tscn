@@ -324,23 +324,21 @@ _data = {
 radius = 54.4518
 
 [node name="Gnome" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer")]
-z_index = 1
-y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_mv3hp")
 speed = 80
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 shape = SubResource("CircleShape2D_mjrjc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
-y_sort_enabled = true
 texture = ExtResource("2_8js2s")
 hframes = 5
 vframes = 10
-frame = 46
+frame = 39
 
 [node name="Debug" type="Label" parent="Sprite2D"]
 anchors_preset = -1
@@ -362,13 +360,12 @@ libraries = {
 }
 
 [node name="NearDetectionArea" type="Area2D" parent="."]
-position = Vector2(-2, 21)
+position = Vector2(-1.19209e-07, 1.90735e-06)
 scale = Vector2(1.79789, 1.79789)
 collision_layer = 0
 collision_mask = 4
 
 [node name="NearDetectionCollision" type="CollisionShape2D" parent="NearDetectionArea"]
-position = Vector2(1, -12)
 shape = SubResource("CircleShape2D_wgqdx")
 debug_color = Color(0.842376, 0.369429, 0.255676, 0.42)
 
@@ -432,9 +429,12 @@ return_to_patrol_state = NodePath(".")
 
 [node name="StateDebugText" type="Label" parent="."]
 offset_left = -20.0
-offset_top = -51.0
+offset_top = -38.0
 offset_right = 20.0
-offset_bottom = -28.0
+offset_bottom = -15.0
+scale = Vector2(1.29961, 1)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
 [connection signal="area_entered" from="NearDetectionArea" to="." method="_on_near_detection_area_area_entered"]
 [connection signal="area_exited" from="NearDetectionArea" to="." method="_on_near_detection_area_area_exited"]

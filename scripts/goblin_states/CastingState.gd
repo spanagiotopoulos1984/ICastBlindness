@@ -20,7 +20,12 @@ func process_frame(delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	if timer <= 0:
+	var goblin = parent as Goblin
+	
+	if Input.is_action_just_pressed("Inventory"):
+		goblin.enter_or_exit_inventory_screen()
+		return null
+	elif timer <= 0:
 		cast_spell((parent as Goblin).spell_to_cast)
 		if (Input.is_action_pressed("player_down") or 
 			Input.is_action_pressed("player_up") or 
