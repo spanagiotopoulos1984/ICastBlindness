@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bukq8oglhq7xv"]
+[gd_scene load_steps=34 format=3 uid="uid://bukq8oglhq7xv"]
 
 [ext_resource type="Script" path="res://scripts/Goblin.gd" id="1_t2vgp"]
 [ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/goblin_states/BoxMovingState.gd" id="10_08tvj"]
 [ext_resource type="Script" path="res://scripts/goblin_states/GoblinState.gd" id="11_66l13"]
 [ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/ARCADE_N.TTF" id="12_utob8"]
+[ext_resource type="Script" path="res://scripts/inventory_ui.gd" id="13_f6vdp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
 size = Vector2(4, 14)
@@ -317,6 +318,8 @@ _data = {
 font_size = 12
 font_color = Color(3.36915e-06, 0, 0.822498, 1)
 
+[sub_resource type="Theme" id="Theme_kwouj"]
+
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Player"]]
 texture_filter = 1
 script = ExtResource("1_t2vgp")
@@ -439,16 +442,18 @@ z_index = 4
 shape = SubResource("RectangleShape2D_gybas")
 
 [node name="InteractionUI" type="CanvasLayer" parent="."]
+layer = 5
 
 [node name="ColorRect" type="ColorRect" parent="InteractionUI"]
-visible = false
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -50.0
+offset_left = -315.0
+offset_top = -63.0
+offset_right = -3.0
+offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
 color = Color(0.25274, 0.545614, 0.590139, 1)
@@ -475,28 +480,15 @@ vertical_alignment = 1
 
 [node name="InventoryUI" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 
-[node name="ColorRect" type="ColorRect" parent="InventoryUI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = -50.0
-offset_right = 301.0
-grow_vertical = 0
-size_flags_horizontal = 0
-color = Color(0.45447, 0.378852, 0.226036, 1)
-
-[node name="Label" type="Label" parent="InventoryUI/ColorRect"]
-layout_mode = 1
+[node name="Label" type="Label" parent="InventoryUI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -290.0
-offset_top = -11.0
-offset_right = 277.0
-offset_bottom = 54.0
+offset_left = -211.5
+offset_top = 564.0
+offset_right = -122.5
+offset_bottom = 575.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("12_utob8")
 theme_override_font_sizes/font_size = 10
@@ -504,16 +496,36 @@ text = "INVENTORY
 "
 horizontal_alignment = 1
 
+[node name="ColorRect" type="ColorRect" parent="InventoryUI"]
+offset_left = 3.0
+offset_top = 577.0
+offset_right = 315.0
+offset_bottom = 637.0
+color = Color(0.470588, 0.317647, 0.0901961, 0.345098)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kwouj")
+theme_override_constants/separation = 50
+script = ExtResource("13_f6vdp")
+
 [node name="SpellBook" type="CanvasLayer" parent="."]
 process_mode = 3
 
 [node name="ColorRect" type="ColorRect" parent="SpellBook"]
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = -1
+anchor_top = 0.925
+anchor_right = 0.472
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = -625.0
-offset_right = 302.0
+offset_top = -577.0
+offset_right = -0.0800171
 offset_bottom = -575.0
 grow_vertical = 0
 size_flags_horizontal = 0

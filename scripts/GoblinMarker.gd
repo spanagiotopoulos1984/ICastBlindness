@@ -6,7 +6,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -18,12 +18,12 @@ func _on_timer_timeout():
 
 # This is for debugging purposes. It is emitted when another area enters this
 # one. p.ex. Detection event
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	pass
 	#print("I am detected by " + area.name)
 	
 	# This is for debugging purposes. It is emitted when another area enters this
 # one. p.ex. Detection event
-func _on_area_exited(area):
+func _on_area_exited(_area):
 	pass
 	#print("I am no longer detected by " + area.name)

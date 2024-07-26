@@ -38,7 +38,7 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 func _ready() -> void:
 	state_machine.init(self)
 	# Set this goblin reference to the Global script
-	Global.set_goblin(self)
+	Global.set_golbin_reference(self)
 
 # Used when an input is not consumed by a handler, so it can be propagated to
 # the state machine.

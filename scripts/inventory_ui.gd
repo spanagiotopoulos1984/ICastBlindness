@@ -1,12 +1,26 @@
+class_name InventoryUI
 extends Control
 
+@onready var horizontal_container = $"."
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Global.inventory_updated.connect(_on_inventory_updated)
+	_on_inventory_updated()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+func _on_inventory_updated():
+	clear_grid_container()
+	for item in Global.inventory:
+		var slot = Global.inventory_slot_scene.instantiate()
+		horizontal_container.add_child(slot)
+		if item:
+			slot.set_item(item)
+		else:
+			slot.set_empty()
+	
+func clear_grid_container():
+	for i in range(horizontal_container.get_child_count()):
+		var child = horizontal_container.get_child(0)
+		horizontal_container.remove_child(child)
+		if child:
+			child.queue_free()
+		

@@ -3,8 +3,8 @@ class_name InventoryItem
 extends Node2D
 
 @export var item_name: String
-@export var item_type: String
 @export var item_texture: Texture
+@export var item_usages: String
 
 var player_in_range: bool
 
@@ -26,13 +26,13 @@ func _process(_delta):
 func pick_up_item() -> void:
 	var item ={
 		"quantity": 1,
-		"item_type": item_type,
 		"item_name" : item_name,
 		"item_texture": item_texture,
+		"item_usages": item_usages,
 		"scene_path" : scene_path
 	}
 	
-	if Global.goblin:
+	if Global.goblin_node:
 		Global.add_inventory_item(item)
 		self.queue_free()
 

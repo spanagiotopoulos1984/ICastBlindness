@@ -1,45 +1,36 @@
 extends Node
 
-# To hold the max array size, in order to avoid needless resizing
-const MAX_INVENTORY_SIZE = 12
+# An array to hold inventory items
+var inventory = []
 
 signal inventory_updated
 
-# An empty array instantiated at the start of the Game, that will hold all of
-# our items
-var inventory = []
+var goblin_node: Goblin  = null		
 
-# A variable to hold our player node
-var goblin: Goblin = null
-
-# A boolean array that keeps track of which spells we have found the recipes for
-# To be used to either display scrolls in the world and play the text/sound
-# when they are found (if the appropriate value is false) or to not display them
-# at all, but actually display the spells in the action bar.	
-var spells_found = [false,false,false,false,false]
-
+@onready var inventory_slot_scene :PackedScene = preload("res://scenes/inventory_slot.tscn")
+	
 func _ready():
-	inventory.resize(MAX_INVENTORY_SIZE)
-
-func add_inventory_item(item: InventoryItem) -> bool:
-	# Check if we have already the item in the inventory, and increase its
-	# quantity
+	inventory.resize(6)
+	
+func add_inventory_item(item) -> bool:
+	var item_name = item['item_name']
+	
+	# Loop through the array. If you find the item, increase its quantity.
+	# If you find null, you reached the end of the array, so the item
+	# did not exist at all. Add it.
 	for i in range(inventory.size()):
-		if inventory[i] != null and inventory[i]["item_type"] == item["item_type"]:
-			inventory[i]["quantity"] += 1
+		if inventory[i] and inventory[i]['item_name'] == item_name:
+			inventory[i]['quantity'] += 1
 			inventory_updated.emit()
 			return true
-		else: 
-			inventory.append(item)
+		elif not  inventory[i]:
+			inventory[i] = item
 			inventory_updated.emit()
 			return true
 	return false
 	
-func remove_inventory_item():
+func increase_inventory_size() ->void:
 	inventory_updated.emit()
 	
-func increase_inventory_size():
-	inventory_updated.emit()
-	
-func set_goblin(goblin_node :Goblin) -> void:
-	goblin = goblin_node	
+func set_golbin_reference(goblin: Goblin):
+	goblin_node = goblin
