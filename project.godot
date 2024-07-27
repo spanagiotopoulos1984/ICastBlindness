@@ -89,6 +89,7 @@ pick_up_item={
 2d_physics/layer_3="goblin_marker"
 2d_physics/layer_4="blindness_marker"
 2d_physics/layer_5="freeze_marker"
+2d_physics/layer_6="gnome_detection_area"
 
 [rendering]
 

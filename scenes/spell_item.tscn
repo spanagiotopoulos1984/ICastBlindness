@@ -1,23 +1,23 @@
-[gd_scene load_steps=15 format=3 uid="uid://bfnoq3u5082mu"]
+[gd_scene load_steps=15 format=3 uid="uid://rv3nqnni1ehh"]
 
-[ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_65xgh"]
-[ext_resource type="Texture2D" uid="uid://dnwxqvik5qkl7" path="res://textures/ItemsAndEffects/pointer.png" id="2_2jhxe"]
-[ext_resource type="Texture2D" uid="uid://70s68bivr5vm" path="res://textures/ItemsAndEffects/tingle.png" id="2_3a4iq"]
+[ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_phobr"]
+[ext_resource type="Texture2D" uid="uid://70s68bivr5vm" path="res://textures/ItemsAndEffects/tingle.png" id="2_lvygi"]
+[ext_resource type="Texture2D" uid="uid://dnwxqvik5qkl7" path="res://textures/ItemsAndEffects/pointer.png" id="3_b6d4l"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pmiy8"]
-atlas = ExtResource("2_3a4iq")
+atlas = ExtResource("2_lvygi")
 region = Rect2(0, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5t41"]
-atlas = ExtResource("2_3a4iq")
+atlas = ExtResource("2_lvygi")
 region = Rect2(8, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_384a3"]
-atlas = ExtResource("2_3a4iq")
+atlas = ExtResource("2_lvygi")
 region = Rect2(16, 0, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eat7n"]
-atlas = ExtResource("2_3a4iq")
+atlas = ExtResource("2_lvygi")
 region = Rect2(24, 0, 8, 8)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rgc8d"]
@@ -41,19 +41,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jidpp"]
-atlas = ExtResource("2_2jhxe")
+atlas = ExtResource("3_b6d4l")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wb3vf"]
-atlas = ExtResource("2_2jhxe")
+atlas = ExtResource("3_b6d4l")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mxhtl"]
-atlas = ExtResource("2_2jhxe")
+atlas = ExtResource("3_b6d4l")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7omai"]
-atlas = ExtResource("2_2jhxe")
+atlas = ExtResource("3_b6d4l")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_db0xy"]
@@ -79,8 +79,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_soach"]
 radius = 8.0
 
-[node name="InventoryItem" type="Node2D" groups=["Inventory_Items"]]
-script = ExtResource("1_65xgh")
+[node name="SpellItem" type="Node2D" groups=["Inventory_Items"]]
+script = ExtResource("1_phobr")
 
 [node name="Tingle" type="AnimatedSprite2D" parent="."]
 visible = false

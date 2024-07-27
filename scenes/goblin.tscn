@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bukq8oglhq7xv"]
+[gd_scene load_steps=37 format=3 uid="uid://bukq8oglhq7xv"]
 
 [ext_resource type="Script" path="res://scripts/Goblin.gd" id="1_t2vgp"]
 [ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://scripts/goblin_states/GoblinState.gd" id="11_66l13"]
 [ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/ARCADE_N.TTF" id="12_utob8"]
 [ext_resource type="Script" path="res://scripts/inventory_ui.gd" id="13_f6vdp"]
+[ext_resource type="PackedScene" uid="uid://cem0odibxph4f" path="res://scenes/inventory_slot.tscn" id="14_g5kwa"]
+[ext_resource type="Script" path="res://scripts/spellbook_ui.gd" id="15_t41e4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
 size = Vector2(4, 14)
@@ -318,6 +320,16 @@ _data = {
 font_size = 12
 font_color = Color(3.36915e-06, 0, 0.822498, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_bxmxf"]
+line_spacing = 4.0
+font = ExtResource("12_utob8")
+font_size = 8
+font_color = Color(0.46, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
+
 [sub_resource type="Theme" id="Theme_kwouj"]
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Player"]]
@@ -337,7 +349,7 @@ z_index = 1
 texture = ExtResource("2_kxsi4")
 hframes = 5
 vframes = 12
-frame = 40
+frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -436,6 +448,7 @@ wait_time = 0.5
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 z_index = 4
@@ -456,7 +469,7 @@ offset_right = -3.0
 offset_bottom = -3.0
 grow_horizontal = 0
 grow_vertical = 0
-color = Color(0.25274, 0.545614, 0.590139, 1)
+color = Color(0, 0, 0, 0.647059)
 
 [node name="Label" type="Label" parent="InteractionUI/ColorRect"]
 layout_mode = 1
@@ -471,6 +484,7 @@ offset_right = 89.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.492178, 0.30669, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("12_utob8")
 theme_override_font_sizes/font_size = 12
 text = "Press E to pick up item.
@@ -478,10 +492,26 @@ text = "Press E to pick up item.
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InventoryUI" type="CanvasLayer" parent="."]
+[node name="Speech" type="Label" parent="InteractionUI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -428.0
+offset_top = -34.0
+offset_right = -183.0
+offset_bottom = -11.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "I am a goblin speech text
+"
+label_settings = SubResource("LabelSettings_bxmxf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Inventory" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="Label" type="Label" parent="InventoryUI"]
+[node name="Label" type="Label" parent="Inventory"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -496,14 +526,14 @@ text = "INVENTORY
 "
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="InventoryUI"]
+[node name="ColorRect" type="ColorRect" parent="Inventory"]
 offset_left = 3.0
 offset_top = 577.0
 offset_right = 315.0
 offset_bottom = 637.0
 color = Color(0.470588, 0.317647, 0.0901961, 0.345098)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="InventoryUI/ColorRect"]
+[node name="InventoryContainer" type="HBoxContainer" parent="Inventory/ColorRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -515,38 +545,32 @@ theme = SubResource("Theme_kwouj")
 theme_override_constants/separation = 50
 script = ExtResource("13_f6vdp")
 
+[node name="InventorySlot" parent="Inventory/ColorRect/InventoryContainer" instance=ExtResource("14_g5kwa")]
+layout_mode = 2
+
 [node name="SpellBook" type="CanvasLayer" parent="."]
 process_mode = 3
 
-[node name="ColorRect" type="ColorRect" parent="SpellBook"]
-anchors_preset = -1
-anchor_top = 0.925
-anchor_right = 0.472
-anchor_bottom = 1.0
-offset_left = 2.0
-offset_top = -577.0
-offset_right = -0.0800171
-offset_bottom = -575.0
-grow_vertical = 0
-size_flags_horizontal = 0
-color = Color(0.45447, 0.378852, 0.226036, 1)
+[node name="ColorRect2" type="ColorRect" parent="SpellBook"]
+offset_right = 345.0
+offset_bottom = 60.0
+color = Color(0.470588, 0.317647, 0.0901961, 0.345098)
 
-[node name="Label" type="Label" parent="SpellBook/ColorRect"]
+[node name="SpellContainer" type="HBoxContainer" parent="SpellBook/ColorRect2"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -290.0
-offset_top = -11.0
-offset_right = 277.0
-offset_bottom = 54.0
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_right = 140.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("12_utob8")
-theme_override_font_sizes/font_size = 10
-text = "SPELLS
-
-"
-horizontal_alignment = 1
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kwouj")
+theme_override_constants/separation = 51
+script = ExtResource("15_t41e4")
 
 [connection signal="timeout" from="MarkerCreationTimer" to="." method="_on_marker_creation_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

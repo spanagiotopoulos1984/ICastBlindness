@@ -1,12 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct78qixpr4kxk"]
+[gd_scene load_steps=17 format=3 uid="uid://ct78qixpr4kxk"]
 
 [ext_resource type="PackedScene" uid="uid://bukq8oglhq7xv" path="res://scenes/goblin.tscn" id="1_p1cos"]
 [ext_resource type="Texture2D" uid="uid://bpxwebgh52mw6" path="res://textures/tilemaps/forest_tiles.png" id="2_2ym8x"]
 [ext_resource type="Script" path="res://scripts/FollowCamera.gd" id="3_38gpy"]
 [ext_resource type="PackedScene" uid="uid://bfnoq3u5082mu" path="res://scenes/inventory_item.tscn" id="4_h7rit"]
 [ext_resource type="PackedScene" uid="uid://cbx0abje6ceii" path="res://scenes/gnome.tscn" id="4_nbej5"]
+[ext_resource type="Texture2D" uid="uid://c72kuv0tg6s78" path="res://textures/ingredients/i1l.png" id="5_3ke7p"]
 [ext_resource type="PackedScene" uid="uid://crdanbkgx6amw" path="res://scenes/shadow_area.tscn" id="5_bsea5"]
-[ext_resource type="Texture2D" uid="uid://cnehkocbxraxy" path="res://icon.svg" id="5_hw50i"]
+[ext_resource type="Texture2D" uid="uid://cfxd8fn08vpbx" path="res://textures/ingredients/i3l.png" id="6_tfyjo"]
+[ext_resource type="Texture2D" uid="uid://cwcmsnwbu8euk" path="res://textures/ingredients/i1h.png" id="6_y4jjy"]
+[ext_resource type="Texture2D" uid="uid://bv18wtbbrdq70" path="res://textures/ingredients/i2h.png" id="7_2xetn"]
+[ext_resource type="Texture2D" uid="uid://3tv4676qbx83" path="res://textures/ingredients/i2l.png" id="7_4rjde"]
+[ext_resource type="Texture2D" uid="uid://dlb36j2h7pdho" path="res://textures/ingredients/i3h.png" id="10_nmt2j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yydf"]
 texture = ExtResource("2_2ym8x")
@@ -650,21 +655,26 @@ shape = SubResource("RectangleShape2D_uv4tb")
 
 [node name="InventoryItem" parent="TileMap/Items" instance=ExtResource("4_h7rit")]
 position = Vector2(138, 250)
-item_name = "Potion"
-item_texture = ExtResource("5_hw50i")
-item_usages = "To test the map"
+item_name = "Ingredient 1"
+item_texture = ExtResource("5_3ke7p")
+item_texture_ui = ExtResource("6_y4jjy")
+item_usages = "Something 1"
 
 [node name="InventoryItem2" parent="TileMap/Items" instance=ExtResource("4_h7rit")]
 position = Vector2(138, 284)
-item_name = "Potion"
-item_texture = ExtResource("5_hw50i")
-item_usages = "To test the map"
+item_name = "Ingredient 3"
+item_texture = ExtResource("7_4rjde")
+item_texture_ui = ExtResource("7_2xetn")
+item_usages = "And this is the final something (3)"
 
 [node name="InventoryItem3" parent="TileMap/Items" instance=ExtResource("4_h7rit")]
 position = Vector2(174, 256)
-item_name = "Potion"
-item_texture = ExtResource("5_hw50i")
-item_usages = "To test the map"
+item_name = "Ingredient 2"
+item_texture = ExtResource("6_tfyjo")
+item_texture_ui = ExtResource("10_nmt2j")
+item_usages = "This is another something (2)"
+
+[node name="Spells" type="Node" parent="TileMap"]
 
 [node name="Path2D" type="Path2D" parent="."]
 scale = Vector2(0.969901, 1.01761)

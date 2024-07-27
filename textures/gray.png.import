@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds2llbuy1e08q"
-path="res://.godot/imported/effects.png-e9715ad6b7956d78d4d011ad72826796.ctex"
+uid="uid://b7wvx7qgyfmrb"
+path="res://.godot/imported/gray.png-ca9659af3e07a161cb7e04df2d7a421e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/tilemaps/ItemsAndEffects/effects.png"
-dest_files=["res://.godot/imported/effects.png-e9715ad6b7956d78d4d011ad72826796.ctex"]
+source_file="res://textures/gray.png"
+dest_files=["res://.godot/imported/gray.png-ca9659af3e07a161cb7e04df2d7a421e.ctex"]
 
 [params]
 

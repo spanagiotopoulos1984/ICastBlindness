@@ -26,7 +26,7 @@ func set_empty() -> void:
 func set_item(inventory_item) -> void:
 	item = inventory_item
 	item_name.text = inventory_item['item_name']
-	item_icon.texture = inventory_item['item_texture']
+	item_icon.texture = inventory_item['item_texture_ui']
 	item_quantity.text = str(inventory_item['quantity'])
 	item_usages.text = str(inventory_item['item_usages'])
 	
