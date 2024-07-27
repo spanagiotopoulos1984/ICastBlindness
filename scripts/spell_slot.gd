@@ -29,14 +29,17 @@ func _process(_delta):
 	cooldown_text.text = "%3.1f" % spell_cooldown.time_left
 	progress_bar.value = spell_cooldown.time_left
 
-func set_spell(spell:Dictionary) -> void:
-	spell_item = spell
-	texture_button.texture_norma.texture = spell['spell_texture']
-	spell_name.text = spell['spell_name']
-	spell_details.text = spell['spell_description']
-	ingredients.text = spell['spell_ingredients']
+var debug_i = 0
 
-func start_casting():
+func set_spell(spell: Dictionary) -> void:
+	spell_item = spell
+	var texture = spell_item['spell_texture']
+	texture_button.set_texture_normal(load(texture))
+	spell_name.text = spell_item['spell_name']
+	spell_details.text = spell_item['spell_description']
+	ingredients.text = spell_item['spell_ingredients']
+
+func start_casting() -> void:
 	is_spell_ready = false
 	progress_bar.visible = true
 	spell_cooldown.wait_time = cooldown

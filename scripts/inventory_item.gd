@@ -32,7 +32,7 @@ func _process(_delta):
 	if not Engine.is_editor_hint():
 		icon_sprite.texture = item_texture
 		
-	if player_in_range and Input.is_action_pressed("pick_up_item"):
+	if player_in_range and Input.is_action_just_pressed("pick_up_item"):
 		pick_up_item()
 
 func pick_up_item() -> void:

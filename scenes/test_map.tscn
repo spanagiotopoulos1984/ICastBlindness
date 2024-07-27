@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ct78qixpr4kxk"]
+[gd_scene load_steps=18 format=3 uid="uid://ct78qixpr4kxk"]
 
 [ext_resource type="PackedScene" uid="uid://bukq8oglhq7xv" path="res://scenes/goblin.tscn" id="1_p1cos"]
 [ext_resource type="Texture2D" uid="uid://bpxwebgh52mw6" path="res://textures/tilemaps/forest_tiles.png" id="2_2ym8x"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bv18wtbbrdq70" path="res://textures/ingredients/i2h.png" id="7_2xetn"]
 [ext_resource type="Texture2D" uid="uid://3tv4676qbx83" path="res://textures/ingredients/i2l.png" id="7_4rjde"]
 [ext_resource type="Texture2D" uid="uid://dlb36j2h7pdho" path="res://textures/ingredients/i3h.png" id="10_nmt2j"]
+[ext_resource type="PackedScene" uid="uid://rv3nqnni1ehh" path="res://scenes/spell_item.tscn" id="11_pjkgk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yydf"]
 texture = ExtResource("2_2ym8x")
@@ -569,6 +570,7 @@ layer_5/tile_data = PackedInt32Array(65535, 393216, 5, 131071, 393216, 5, 196607
 [node name="Enemies" type="Node" parent="TileMap"]
 
 [node name="Gnome" parent="TileMap" node_paths=PackedStringArray("path_to_follow") instance=ExtResource("4_nbej5")]
+process_mode = 4
 position = Vector2(45.5853, 26.5387)
 rotation = 0.629651
 scale = Vector2(0.986653, 1.00453)
@@ -675,6 +677,18 @@ item_texture_ui = ExtResource("10_nmt2j")
 item_usages = "This is another something (2)"
 
 [node name="Spells" type="Node" parent="TileMap"]
+
+[node name="SpellItem" parent="TileMap/Spells" instance=ExtResource("11_pjkgk")]
+position = Vector2(251, 290)
+spell_id = 0
+
+[node name="SpellItem2" parent="TileMap/Spells" instance=ExtResource("11_pjkgk")]
+position = Vector2(228, 346)
+spell_id = 1
+
+[node name="SpellItem3" parent="TileMap/Spells" instance=ExtResource("11_pjkgk")]
+position = Vector2(356, 363)
+spell_id = 2
 
 [node name="Path2D" type="Path2D" parent="."]
 scale = Vector2(0.969901, 1.01761)

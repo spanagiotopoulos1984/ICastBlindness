@@ -22,5 +22,4 @@ func update_shadoow_state() -> void:
 
 # This makes sense only for the Goblin
 func create_trail() -> void:
-	var gstate = current_state as GoblinState
 	current_state.create_trail()

@@ -15,8 +15,8 @@ func enter() -> void:
 func exit() -> void:
 	super()
 	
-func process_input(event: InputEvent) -> State:
-	var is_moving = true
+func process_input(_event: InputEvent) -> State:
+	is_moving = true
 	
 	var goblin = parent as Goblin
 	

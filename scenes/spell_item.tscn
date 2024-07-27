@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://rv3nqnni1ehh"]
 
-[ext_resource type="Script" path="res://scripts/inventory_item.gd" id="1_phobr"]
+[ext_resource type="Script" path="res://scripts/SpellItem.gd" id="1_lkk2p"]
 [ext_resource type="Texture2D" uid="uid://70s68bivr5vm" path="res://textures/ItemsAndEffects/tingle.png" id="2_lvygi"]
 [ext_resource type="Texture2D" uid="uid://dnwxqvik5qkl7" path="res://textures/ItemsAndEffects/pointer.png" id="3_b6d4l"]
 
@@ -80,7 +80,9 @@ animations = [{
 radius = 8.0
 
 [node name="SpellItem" type="Node2D" groups=["Inventory_Items"]]
-script = ExtResource("1_phobr")
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_lkk2p")
+spell_id = -1
 
 [node name="Tingle" type="AnimatedSprite2D" parent="."]
 visible = false

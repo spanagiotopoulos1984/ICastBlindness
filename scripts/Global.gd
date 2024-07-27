@@ -2,7 +2,7 @@ extends Node
 
 signal inventory_updated
 
-signal spellbook_updated
+signal spellbook_updated(new_spell_id)
 
 const RANDOM_ITEM_PHRASES = ['mine!','I got it!','come here!','muahahahah!','yes!','ohhh look at it!']
 
@@ -102,17 +102,17 @@ func add_spell(spell_id:int) -> bool:
 	var phrase = SPELLS[spell_id]['aquire_phrase']
 	goblin_node.speak(phrase , 1.5)
 	
+	print("Do I have that spell? ",spells_aquired[spell_id] )
+	
 	if spells_aquired[spell_id]:
 		print_debug("BUG: Got spell that already exists in inventory")
 		return false
 	else:
 		spells_aquired[spell_id] = true
 		spellbook[spell_id] = SPELLS[spell_id]
-		spellbook_updated.emit()
+		spellbook_updated.emit(spell_id)
 		return true
 
-	return false
-	
 func add_inventory_item(item) -> bool:
 	var item_name = item['item_name']
 	

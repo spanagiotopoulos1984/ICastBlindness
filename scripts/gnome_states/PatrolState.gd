@@ -11,7 +11,7 @@ func exit() -> void:
 	var gnome = parent as Gnome
 	gnome.last_patrol_position  = parent.global_position
 
-func process_frame(delta: float) -> State:
+func process_frame(_delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
@@ -30,12 +30,12 @@ func process_physics(delta: float) -> State:
 		gnome_parent.path_to_follow.progress += gnome_parent.speed * delta
 		gnome_parent.sprite.global_rotation  = 0
 		var new_position = gnome_parent.global_position
-		var velocity = new_position - gnome_parent.last_known_posititon
+		velocity = new_position - gnome_parent.last_known_posititon
 		gnome_parent.last_known_posititon = gnome_parent.global_position
 		update_animation(velocity)
 		return null
 
-func update_animation(velocity: Vector2):
+func update_animation(_velocity: Vector2):
 	var is_moving = true
 	var gnome = parent as Gnome
 	gnome.sprite.flip_h = velocity.x < 0
