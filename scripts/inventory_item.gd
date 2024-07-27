@@ -1,5 +1,5 @@
 @tool 
-class_name SpellItem
+class_name InventoryItem
 extends Node2D
 
 @export var item_name: String
