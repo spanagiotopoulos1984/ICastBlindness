@@ -31,7 +31,9 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 
 @onready var interaction_ui: CanvasLayer = $InteractionUI
 
-@onready var speech_label: Label = $InteractionUI/Speech
+@onready var speech_label: Label = $Speech
+
+@onready var spellbook = $SpellBook/ColorRect2/SpellContainer
 
 # Ready is called when the node is initialized. The _ in this case means it is
 # a pre-built class.
@@ -68,10 +70,11 @@ func _on_marker_creation_timer_timeout() -> void:
 	var goblin_state_machine = state_machine as GoblinStateMachine
 	goblin_state_machine.create_trail()
 
-
 func _on_area_2d_area_entered(area) -> void:
 	if area.get_parent().name == "ShadowAreas":
-		speak('He he he he', 1.0)
+		# Do not spam this all the time. 20% of times is okay I think
+		if Global.get_percentage() > 0.9:
+			speak('He he he he', 1.0)
 		is_in_shadows = true
 	elif area.get_parent().name == "Gnome" and not is_in_shadows:
 		speak('Gnome chasing me!', 1.0)
@@ -85,4 +88,18 @@ func _on_area_2d_area_exited(area) -> void:
 	elif area.get_parent().name == "Gnome":
 		speak('Bye bye gnome!', 1.0)
 
+func is_spell_aquired() -> bool:
+	var spell_aquired = Global.spells_aquired[spell_to_cast]
+	if not spell_aquired:
+		speak('No spell can cast! I not have it!', 1.5)
+	return spell_aquired
+
+func have_spell_ingredients():
+	var have_spell_igredients = Global.check_spell_ingredients(spell_to_cast)
+	if not have_spell_igredients:
+		speak('No incrediments, no spell!', 1.5)
+	return have_spell_igredients
+
+func can_cast_spell() -> bool:
+	return is_spell_aquired() and have_spell_ingredients()
 

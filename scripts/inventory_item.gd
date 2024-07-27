@@ -6,6 +6,7 @@ extends Node2D
 @export var item_texture: Texture
 @export var item_texture_ui: Texture
 @export var item_usages: String
+@export var item_id: int
 
 var player_in_range: bool
 
@@ -37,12 +38,14 @@ func _process(_delta):
 
 func pick_up_item() -> void:
 	var item ={
+		"item_id":item_id,
 		"quantity": 1,
 		"item_name" : item_name,
 		"item_texture": item_texture,
 		"item_texture_ui": item_texture_ui,
 		"item_usages": item_usages,
-		"scene_path" : scene_path
+		"scene_path" : scene_path,
+		"empty": false
 	}
 	
 	if Global.goblin_node:

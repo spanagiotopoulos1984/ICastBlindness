@@ -668,6 +668,7 @@ item_name = "Ingredient 3"
 item_texture = ExtResource("7_4rjde")
 item_texture_ui = ExtResource("7_2xetn")
 item_usages = "And this is the final something (3)"
+item_id = 1
 
 [node name="InventoryItem3" parent="TileMap/Items" instance=ExtResource("4_h7rit")]
 position = Vector2(174, 256)
@@ -675,6 +676,7 @@ item_name = "Ingredient 2"
 item_texture = ExtResource("6_tfyjo")
 item_texture_ui = ExtResource("10_nmt2j")
 item_usages = "This is another something (2)"
+item_id = 2
 
 [node name="Spells" type="Node" parent="TileMap"]
 

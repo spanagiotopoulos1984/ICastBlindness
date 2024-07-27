@@ -16,6 +16,16 @@
 [ext_resource type="PackedScene" uid="uid://cem0odibxph4f" path="res://scenes/inventory_slot.tscn" id="14_g5kwa"]
 [ext_resource type="Script" path="res://scripts/spellbook_ui.gd" id="15_t41e4"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_bxmxf"]
+line_spacing = 4.0
+font = ExtResource("12_utob8")
+font_size = 8
+font_color = Color(0.46, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
 size = Vector2(4, 14)
 
@@ -320,22 +330,29 @@ _data = {
 font_size = 12
 font_color = Color(3.36915e-06, 0, 0.822498, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bxmxf"]
-line_spacing = 4.0
-font = ExtResource("12_utob8")
-font_size = 8
-font_color = Color(0.46, 0, 0, 1)
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 0
-shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
-
 [sub_resource type="Theme" id="Theme_kwouj"]
 
 [node name="Goblin" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Player"]]
 texture_filter = 1
 script = ExtResource("1_t2vgp")
 animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Speech" type="Label" parent="."]
+z_index = 10
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -108.0
+offset_top = -34.0
+offset_right = 137.0
+offset_bottom = -11.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "I am a goblin speech text
+"
+label_settings = SubResource("LabelSettings_bxmxf")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Wand" type="Marker2D" parent="."]
 position = Vector2(-10, 4)
@@ -489,22 +506,6 @@ theme_override_fonts/font = ExtResource("12_utob8")
 theme_override_font_sizes/font_size = 12
 text = "Press E to pick up item.
 "
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Speech" type="Label" parent="InteractionUI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -428.0
-offset_top = -34.0
-offset_right = -183.0
-offset_bottom = -11.0
-grow_horizontal = 2
-size_flags_vertical = 0
-text = "I am a goblin speech text
-"
-label_settings = SubResource("LabelSettings_bxmxf")
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -12,15 +12,6 @@ var scene_path = "res://scenes/spell_item.tscn"
 @onready var pointer_icon : AnimatedSprite2D = $Pointer
 @onready var tingle : AnimatedSprite2D = $Tingle
 
-	#spell_id = 0,
-	#spell_name = 'I cast BLINDNESS!',
-	#spell_description = 'Like throw dirt eyes, but gooder!',
-	#spell_ingredients = '1 thingie',
-	#aquire_phrase = 'Goodest spell thing! Cheap cheap!',
-	#required_ingredients = [1,0,0,0,0,0],
-	#cooldown = 2.0,
-	#spell_texture = "res://textures/spells/blindness.png"
-
 func _ready():
 	 #If no spell_id has been set (it is the default -1), destroy the item.
 	 #So as to avoid bugs. Just print a debug message!

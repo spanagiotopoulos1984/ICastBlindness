@@ -3,12 +3,16 @@ extends GoblinState
 
 var timer : float
 
+var goblin = null
+
 func enter() -> void:
 	super()
+	print('casting')
+	goblin = parent as Goblin
 	debug.text = name
 	parent.velocity = Vector2.ZERO
 	timer = 0.8
-	begin_casting_animation((parent as Goblin))
+	begin_casting_animation(goblin)	
 	
 func exit() -> void:
 	debug.text = ""
@@ -20,8 +24,6 @@ func process_frame(_delta: float) -> State:
 	return null
 
 func process_physics(delta: float) -> State:
-	var goblin = parent as Goblin
-	
 	if Input.is_action_just_pressed("Inventory"):
 		goblin.enter_or_exit_inventory_screen()
 		return null
@@ -78,9 +80,9 @@ func create_trail():
 	get_tree().get_root().add_child(marker)
 
 func cast_sound():
+	var goblin = parent as Goblin	
 	const SOUND_DISTANCE = 16
 	const DISTANCE_MODIFIER = 8
-	var goblin = parent as Goblin
 	var marker = goblin_marker.instantiate()
 	marker.position = parent.global_position
 	match goblin.last_direction:
@@ -105,6 +107,7 @@ func cast_sound():
 			marker.position.x += SOUND_DISTANCE * DISTANCE_MODIFIER
 			marker.position.y += SOUND_DISTANCE * DISTANCE_MODIFIER
 	get_tree().get_root().add_child(marker)
+	Global.spell_casted.emit(CASTABLE.SOUND)
 	
 func cast_blindness():
 	var wand_marker = (parent as Goblin).wand_marker
@@ -129,15 +132,26 @@ func cast_blindness():
 			blindness_projectile.direction = Vector2(-1,1)
 		DIRECTION.DOWN_RIGHT:
 			blindness_projectile.direction = Vector2(1,1)
+	Global.spell_casted.emit(CASTABLE.BLINDNESS)
 	
-func cast_unlock():
+func cast_unlock()-> void:
 	print("Click!")
+	Global.spell_casted.emit(CASTABLE.UNLOCK)
 	
-func cast_freeze():
+func cast_dispell()-> void:
+	print("DISPELL!")
+	Global.spell_casted.emit(CASTABLE.DISPELL)
+	
+func cast_fireball()-> void:
+	print("FIREBALL!")
+	Global.spell_casted.emit(CASTABLE.FIREBALL)
+	
+func cast_freeze() -> void:
 	var wand_marker = (parent as Goblin).wand_marker
 	var freeze_spell_projectile : FreezeTrapSpell = freeze_spell.instantiate()
 	get_tree().get_root().add_child(freeze_spell_projectile)
 	freeze_spell_projectile.position = wand_marker.global_position
+	Global.spell_casted.emit(CASTABLE.FIREBALL)
 
 func cast_spell(spell: CASTABLE) -> void:
 	match spell:
@@ -151,5 +165,10 @@ func cast_spell(spell: CASTABLE) -> void:
 			cast_unlock()
 		CASTABLE.FREEZE:
 			cast_freeze()
+		CASTABLE.DISPELL:
+			cast_dispell()
+		CASTABLE.FIREBALL:
+			cast_fireball()
 		_:
 			print("Unknown spell selected. A bug.")
+

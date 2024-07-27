@@ -2,7 +2,9 @@ extends Node
 
 signal inventory_updated
 
-signal spellbook_updated(new_spell_id)
+signal spellbook_updated()
+
+signal spell_casted(spell_id)
 
 const RANDOM_ITEM_PHRASES = ['mine!','I got it!','come here!','muahahahah!','yes!','ohhh look at it!']
 
@@ -102,15 +104,13 @@ func add_spell(spell_id:int) -> bool:
 	var phrase = SPELLS[spell_id]['aquire_phrase']
 	goblin_node.speak(phrase , 1.5)
 	
-	print("Do I have that spell? ",spells_aquired[spell_id] )
-	
 	if spells_aquired[spell_id]:
 		print_debug("BUG: Got spell that already exists in inventory")
 		return false
 	else:
 		spells_aquired[spell_id] = true
 		spellbook[spell_id] = SPELLS[spell_id]
-		spellbook_updated.emit(spell_id)
+		spellbook_updated.emit()
 		return true
 
 func add_inventory_item(item) -> bool:
@@ -139,5 +139,54 @@ func increase_inventory_size() ->void:
 func set_golbin_reference(goblin: Goblin):
 	goblin_node = goblin
 
+# Returns a float from 0.0 to 1.0 inclusive
+func get_percentage() -> int:
+	return rng.randfn()
+
+# Returns a random int from 0 to RANDOM_ITEM_PHRASES size inclusive
 func get_random_number() -> int:
-	return rng.randi_range(0, 5)
+	return rng.randi_range(0, RANDOM_ITEM_PHRASES.size()-1)
+
+func check_spell_ingredients(spell_id: int) -> bool:
+	# Get the ingredient array
+	var required_ingredients = SPELLS[spell_id]['required_ingredients']
+	
+	var required_ingredients_check = [false,false,false,false,false,false]
+	
+	# Now let's check the inventory to see if we have them all! Remember
+	# to also remove them, if we do have them all.
+	for i in range(required_ingredients.size()):
+		var required_quantity = required_ingredients[i]
+		if required_quantity == 0:
+			required_ingredients_check[i] = false
+		elif required_quantity > 0:
+			var found_item = false
+			for j in range(inventory.size()):
+				var item = inventory[j]
+				# If an item is missing, or we don't have enough quantity,
+				# immediately return false. There is no sense in checking the
+				# rest
+				if not item or not item['item_name'] or item['quantity'] < required_quantity:
+					found_item = false
+				else:
+					found_item = true
+					required_ingredients_check[i] = true
+					break
+			if not found_item:
+				return false
+
+	for i in range(required_ingredients.size()):
+		print(required_ingredients[i])
+
+	# If we are here, we have ALL required ingredients.
+	for i in range(required_ingredients_check.size()):
+		if required_ingredients_check[i]:
+			var required_quantity = required_ingredients[i]
+			print('Old Quantity: ',inventory[i]['quantity'])
+			inventory[i]['quantity'] -= required_quantity
+			print('New Quantity: ',inventory[i]['quantity'])
+			
+	# Update the inventory!
+	inventory_updated.emit()		
+	return true
+	
