@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cltc67w2q7eag"]
 
 [ext_resource type="Script" path="res://scripts/BlindnessSpell.gd" id="1_gfrar"]
-[ext_resource type="Texture2D" uid="uid://ds2llbuy1e08q" path="res://textures/tilemaps/ItemsAndEffects/effects.png" id="2_51gpc"]
+[ext_resource type="Texture2D" uid="uid://ds2llbuy1e08q" path="res://textures/itemsAndEffects/effects.png" id="2_51gpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ik488"]
 

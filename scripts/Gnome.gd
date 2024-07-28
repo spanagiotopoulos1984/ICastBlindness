@@ -28,5 +28,5 @@ func _on_near_detection_area_area_entered(area):
 	is_detecting_goblin = true
 	last_known_posititon = area.global_position
 
-func _on_near_detection_area_area_exited(area):
+func _on_near_detection_area_area_exited(_area):
 	is_detecting_goblin = false

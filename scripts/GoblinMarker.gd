@@ -20,10 +20,8 @@ func _on_timer_timeout():
 # one. p.ex. Detection event
 func _on_area_entered(_area):
 	pass
-	#print("I am detected by " + area.name)
 	
 	# This is for debugging purposes. It is emitted when another area enters this
 # one. p.ex. Detection event
 func _on_area_exited(_area):
 	pass
-	#print("I am no longer detected by " + area.name)

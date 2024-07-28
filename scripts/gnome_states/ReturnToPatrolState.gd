@@ -2,10 +2,11 @@ class_name ReturnToPatrolState
 extends GnomeState
 
 # Used to to find out how close we are to the last patrol location
-const MINIMUM_DISTANCE_TO_REACH: float = 2.0
+const MINIMUM_DISTANCE_TO_REACH: float = 1.5
 
 func enter() -> void:
 	pass
+	parent.speed = 100
 	debug.text = name
 	
 func exit() -> void:

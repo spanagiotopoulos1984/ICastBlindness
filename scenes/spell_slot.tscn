@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6jer7yuodgaj"]
+[gd_scene load_steps=7 format=3 uid="uid://b5mi1aytw70ke"]
 
 [ext_resource type="Script" path="res://scripts/spell_slot.gd" id="1_jj4oq"]
-[ext_resource type="Texture2D" uid="uid://cnehkocbxraxy" path="res://icon.svg" id="2_y72s8"]
-[ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/ARCADE_N.TTF" id="3_kfh6q"]
+[ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/fonts/ARCADE_N.TTF" id="2_1jjn3"]
+[ext_resource type="Texture2D" uid="uid://c0nejdo3u3v2u" path="res://textures/spells/blank-spell.png" id="3_mhswx"]
+[ext_resource type="Texture2D" uid="uid://b7wvx7qgyfmrb" path="res://textures/gray.png" id="4_nkrva"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgpg1"]
+[sub_resource type="LabelSettings" id="LabelSettings_iknr6"]
+font_size = 8
 
-[sub_resource type="LabelSettings" id="LabelSettings_t645s"]
-font = ExtResource("3_kfh6q")
-font_size = 14
+[sub_resource type="LabelSettings" id="LabelSettings_pial7"]
+font_size = 8
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
 
 [node name="SpellSlot" type="Control"]
 layout_mode = 3
@@ -25,105 +29,177 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jj4oq")
 
-[node name="OuterBorder" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.372754, 0.309398, 0.17911, 1)
-
-[node name="InnerBorder" type="ColorRect" parent="."]
+[node name="SpellBorder" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -19.0
-offset_right = 20.0
-offset_bottom = 21.0
+offset_left = -22.5
+offset_top = -22.5
+offset_right = 27.5
+offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.454902, 0.380392, 0.227451, 1)
+color = Color(0.19002, 0.153503, 0.0780231, 1)
 
-[node name="ItemIcon" type="Sprite2D" parent="InnerBorder"]
-position = Vector2(19.5, 20)
-scale = Vector2(0.27, 0.27)
-texture = ExtResource("2_y72s8")
-
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_vgpg1")
-button_mask = 0
-
-[node name="ItemQuantity" type="Label" parent="."]
-layout_mode = 1
-offset_right = 14.0
-offset_bottom = 23.0
-text = "0
-"
-label_settings = SubResource("LabelSettings_t645s")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DetailsPanel" type="ColorRect" parent="."]
+[node name="DetailsPanel" type="ColorRect" parent="SpellBorder"]
+visible = false
 layout_mode = 0
-offset_top = -52.0
-offset_right = 200.0
-offset_bottom = -2.0
+offset_left = 1.5
+offset_top = 56.5
+offset_right = 501.5
+offset_bottom = 156.5
 color = Color(0.372549, 0.309804, 0.180392, 1)
 
-[node name="ItemName" type="Label" parent="DetailsPanel"]
+[node name="SpellName" type="Label" parent="SpellBorder/DetailsPanel"]
 layout_mode = 1
 offset_left = 5.0
 offset_right = 45.0
 offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("3_kfh6q")
+theme_override_fonts/font = ExtResource("2_1jjn3")
 theme_override_font_sizes/font_size = 10
-text = "item name
+text = "?
 "
 
-[node name="ItemQuantity" type="Label" parent="DetailsPanel"]
+[node name="SpellDetails" type="Label" parent="SpellBorder/DetailsPanel"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 5.0
-offset_top = -12.5
-offset_right = 94.0
-offset_bottom = 12.5
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_kfh6q")
-theme_override_font_sizes/font_size = 10
-text = "0 on Hand
-
-"
-
-[node name="ItemUsage" type="Label" parent="DetailsPanel"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 5.0
-offset_top = -25.0
-offset_right = 197.0
-offset_bottom = 14.0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("3_kfh6q")
+offset_top = 18.0
+offset_right = 5.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_1jjn3")
 theme_override_font_sizes/font_size = 10
-text = "Used for: TEST TEST TEST
+text = "-
 
 "
+label_settings = SubResource("LabelSettings_iknr6")
 autowrap_mode = 1
 justification_flags = 171
 
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[node name="RequiresText" type="Label" parent="SpellBorder/DetailsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 5.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_1jjn3")
+theme_override_font_sizes/font_size = 10
+text = "Requires: 
+
+
+
+"
+label_settings = SubResource("LabelSettings_iknr6")
+autowrap_mode = 1
+justification_flags = 171
+
+[node name="Ingredients" type="Label" parent="SpellBorder/DetailsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 49.0
+offset_right = 5.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_1jjn3")
+theme_override_font_sizes/font_size = 10
+text = "
+
+
+"
+label_settings = SubResource("LabelSettings_iknr6")
+autowrap_mode = 1
+justification_flags = 171
+
+[node name="Spell" type="ColorRect" parent="SpellBorder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 23.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999156, 1.00769)
+color = Color(0.312494, 0.259645, 0.148209, 1)
+
+[node name="TextureButton" type="TextureButton" parent="SpellBorder/Spell"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.500422
+offset_top = 0.496186
+offset_right = 0.500423
+offset_bottom = 0.496185
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 0
+texture_normal = ExtResource("3_mhswx")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="SpellBorder/Spell"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0004
+offset_top = -22.0038
+offset_right = 21.9996
+offset_bottom = 22.9962
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.05
+value = 50.0
+fill_mode = 5
+texture_progress = ExtResource("4_nkrva")
+tint_progress = Color(0, 0, 0, 0.588235)
+
+[node name="SpellCooldown" type="Timer" parent="SpellBorder/Spell"]
+one_shot = true
+
+[node name="SpellCooldownText" type="Label" parent="SpellBorder/Spell"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.4983
+offset_top = -21.1831
+offset_right = 19.5017
+offset_bottom = 1.81691
+grow_horizontal = 2
+grow_vertical = 0
+text = "0.0
+"
+label_settings = SubResource("LabelSettings_pial7")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="mouse_entered" from="SpellBorder/Spell/TextureButton" to="." method="_on_texture_button_mouse_entered"]
+[connection signal="mouse_exited" from="SpellBorder/Spell/TextureButton" to="." method="_on_texture_button_mouse_exited"]
+[connection signal="timeout" from="SpellBorder/Spell/SpellCooldown" to="." method="_on_spell_cooldown_timeout"]

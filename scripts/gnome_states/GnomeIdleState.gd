@@ -34,7 +34,6 @@ func process_physics(delta: float) -> State:
 		timer -= 1.0 * delta
 	else:
 		return chasing_state
-	#print(timer)
 	if timer > 0:
 		return null
 	else:

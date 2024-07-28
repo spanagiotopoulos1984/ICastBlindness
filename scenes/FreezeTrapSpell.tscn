@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bo1x0u6ah5bco"]
 
 [ext_resource type="Script" path="res://scripts/freeze_trap_spell.gd" id="1_m4i0o"]
-[ext_resource type="Texture2D" uid="uid://ds2llbuy1e08q" path="res://textures/tilemaps/ItemsAndEffects/effects.png" id="2_toulo"]
+[ext_resource type="Texture2D" uid="uid://ds2llbuy1e08q" path="res://textures/itemsAndEffects/effects.png" id="2_dov6k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xk2y0"]
 
@@ -53,7 +53,7 @@ script = ExtResource("1_m4i0o")
 shape = SubResource("CircleShape2D_xk2y0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_toulo")
+texture = ExtResource("2_dov6k")
 hframes = 20
 vframes = 10
 frame = 8
