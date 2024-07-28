@@ -16,9 +16,7 @@ func process_physics(delta: float) -> State:
 	var gnome = parent as Gnome
 	timer -= 1 * delta
 	if timer <= 0.0:
-		print("No longer frozen")
 		gnome.is_frozen = false
 		return gnome_idle_state
 	else:
-		print("Still frozen")
 		return null

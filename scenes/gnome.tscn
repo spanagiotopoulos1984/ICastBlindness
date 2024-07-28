@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cbx0abje6ceii"]
+[gd_scene load_steps=30 format=3 uid="uid://cbx0abje6ceii"]
 
 [ext_resource type="Script" path="res://scripts/Gnome.gd" id="1_mv3hp"]
 [ext_resource type="Texture2D" uid="uid://cgsyhesk1xlbc" path="res://textures/spritesheets/gnome.png" id="2_8js2s"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/gnome_states/ReturnToPatrolState.gd" id="9_cgb8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjrjc"]
-radius = 14.0
+radius = 16.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_6frmb"]
 line_spacing = 2.0
@@ -323,7 +323,20 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_wgqdx"]
 radius = 54.4518
 
+[sub_resource type="Gradient" id="Gradient_aieow"]
+offsets = PackedFloat32Array(0, 0.773585)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cpi37"]
+gradient = SubResource("Gradient_aieow")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.508547, 0.491453)
+fill_to = Vector2(0.91453, 0.982906)
+
 [node name="Gnome" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Gnome"]]
+texture_filter = 1
 collision_layer = 2
 script = ExtResource("1_mv3hp")
 speed = 80
@@ -331,6 +344,7 @@ animationPlayer = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
+position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_mjrjc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -341,6 +355,7 @@ vframes = 10
 frame = 39
 
 [node name="Debug" type="Label" parent="Sprite2D"]
+visible = false
 anchors_preset = -1
 anchor_left = -0.125
 anchor_top = -0.594
@@ -428,6 +443,7 @@ patroling_state = NodePath("../PatrolState")
 return_to_patrol_state = NodePath(".")
 
 [node name="StateDebugText" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -38.0
 offset_right = 20.0
@@ -435,6 +451,10 @@ offset_bottom = -15.0
 scale = Vector2(1.29961, 1)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0, 0.0166664, 1)
+texture = SubResource("GradientTexture2D_cpi37")
 
 [connection signal="area_entered" from="NearDetectionArea" to="." method="_on_near_detection_area_area_entered"]
 [connection signal="area_exited" from="NearDetectionArea" to="." method="_on_near_detection_area_area_exited"]

@@ -9,14 +9,7 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 func _ready():
 	Global.spellbook_updated.connect(_on_spellbook_updated)
 	Global.spell_casted.connect(_on_spell_cast)
-	initialize()
-
-func initialize():
-	clear_container()
-	for i in range(Global.spellbook.size()):
-		var slot = Global.spellbook_scene.instantiate()
-		horizontal_container.add_child(slot)
-		slot.set_spell(Global.BLANK_SPELL)
+	_on_spellbook_updated()
 
 func _on_spellbook_updated():
 	clear_container()
@@ -35,7 +28,7 @@ func clear_container():
 		if child:
 			child.queue_free()
 
-
-func _on_spell_cast(spell: CASTABLE):
-	var spell_slot = horizontal_container.get_child(spell)
-	print("Spell reports being cast: ",spell_slot['spell_name'].text)
+# Run out of time. No spell CDs :(
+func _on_spell_cast(_spell: CASTABLE):
+	#var spell_slot = horizontal_container.get_child(_spell)
+	pass

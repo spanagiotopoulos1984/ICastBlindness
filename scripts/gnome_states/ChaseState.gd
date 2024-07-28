@@ -10,6 +10,7 @@ var distance_to_marker : float
 
 func enter() -> void:
 	debug.text = name
+	parent.speed = 100
 	
 func exit() -> void:
 	debug.text = ""

@@ -17,7 +17,3 @@ func _ready():
 	limit_left = 0
 	limit_right = world_size_in_pixels.x
 	limit_bottom = world_size_in_pixels.y
-	
-	print(limit_top,",", limit_left,",",limit_right,",",limit_bottom)
-	print(map_rect)
-	

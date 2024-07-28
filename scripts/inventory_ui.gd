@@ -12,11 +12,12 @@ func _on_inventory_updated():
 	for item in Global.inventory:
 		var slot = Global.inventory_slot_scene.instantiate()
 		horizontal_container.add_child(slot)
-		if item and item['quantity'] > 0 :
+		if item and item['item_quantity'] > 0 :
 			slot.set_item(item)
 		else:
 			slot.set_empty()
-	
+			
+			
 func clear_container():
 	for i in range(horizontal_container.get_child_count()):
 		var child = horizontal_container.get_child(0)

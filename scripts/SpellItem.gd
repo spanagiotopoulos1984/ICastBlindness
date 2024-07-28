@@ -6,7 +6,7 @@ extends Node2D
 
 var player_in_range: bool
 
-var scene_path = "res://scenes/spell_item.tscn"
+@onready var scene_path = "res://scenes/spell_item.tscn"
 
 @onready var icon_sprite : Sprite2D = $Sprite2D
 @onready var pointer_icon : AnimatedSprite2D = $Pointer
@@ -16,7 +16,6 @@ func _ready():
 	 #If no spell_id has been set (it is the default -1), destroy the item.
 	 #So as to avoid bugs. Just print a debug message!
 	if spell_id != -1 and not Engine.is_editor_hint() :
-		print(Global.SPELLS[spell_id]['spell_texture'])
 		var texture_path = Global.SPELLS[spell_id]['spell_texture']
 		icon_sprite.texture = load(texture_path)
 		
@@ -64,7 +63,6 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_area_2d_body_exited(body):
-	print("Hello 2!")
 	if body.is_in_group("Player"):
 		player_in_range=false
 		body.interaction_ui.visible = false

@@ -4,6 +4,7 @@ extends GnomeState
 var velocity
 
 func enter() -> void:
+	parent.speed = 100
 	debug.text = name
 	
 func exit() -> void:
@@ -27,11 +28,13 @@ func process_physics(delta: float) -> State:
 		return chasing_state
 	else:
 		var gnome_parent = parent as Gnome
-		gnome_parent.path_to_follow.progress += gnome_parent.speed * delta
-		gnome_parent.sprite.global_rotation  = 0
-		var new_position = gnome_parent.global_position
-		velocity = new_position - gnome_parent.last_known_posititon
+	
+		gnome_parent.path_to_follow.set_progress(gnome_parent.path_to_follow.progress + gnome_parent.speed * delta)
+		gnome_parent.sprite.global_rotation = 0
+		
+		velocity = gnome_parent.global_position - gnome_parent.last_known_posititon
 		gnome_parent.last_known_posititon = gnome_parent.global_position
+		
 		update_animation(velocity)
 		return null
 

@@ -81,7 +81,6 @@ func _on_area_2d_area_entered(area) -> void:
 	elif area.get_parent().name == "Gnome" and is_in_shadows:
 		speak('Gnome can\'t see me here!', 1.0)
 
-
 func _on_area_2d_area_exited(area) -> void:
 	if area.get_parent().name == "ShadowAreas":
 		is_in_shadows = false
@@ -102,4 +101,3 @@ func have_spell_ingredients():
 
 func can_cast_spell() -> bool:
 	return is_spell_aquired() and have_spell_ingredients()
-

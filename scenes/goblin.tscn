@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Goblin.gd" id="1_t2vgp"]
 [ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
+[ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/fonts/ARCADE_N.TTF" id="2_v2wsf"]
 [ext_resource type="Script" path="res://scripts/GoblinStateMachine.gd" id="3_5qqeg"]
 [ext_resource type="Script" path="res://scripts/goblin_states/CastingState.gd" id="4_ljbmm"]
 [ext_resource type="Script" path="res://scripts/goblin_states/MovingState.gd" id="5_a77r2"]
@@ -11,17 +12,16 @@
 [ext_resource type="Script" path="res://scripts/goblin_states/BoxIdleState.gd" id="9_6d8d4"]
 [ext_resource type="Script" path="res://scripts/goblin_states/BoxMovingState.gd" id="10_08tvj"]
 [ext_resource type="Script" path="res://scripts/goblin_states/GoblinState.gd" id="11_66l13"]
-[ext_resource type="FontFile" uid="uid://ddl3tmbujf6su" path="res://textures/ARCADE_N.TTF" id="12_utob8"]
 [ext_resource type="Script" path="res://scripts/inventory_ui.gd" id="13_f6vdp"]
 [ext_resource type="PackedScene" uid="uid://cem0odibxph4f" path="res://scenes/inventory_slot.tscn" id="14_g5kwa"]
 [ext_resource type="Script" path="res://scripts/spellbook_ui.gd" id="15_t41e4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bxmxf"]
 line_spacing = 4.0
-font = ExtResource("12_utob8")
-font_size = 8
+font = ExtResource("2_v2wsf")
+font_size = 7
 font_color = Color(0.46, 0, 0, 1)
-outline_size = 2
+outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
@@ -342,10 +342,10 @@ z_index = 10
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -108.0
-offset_top = -34.0
-offset_right = 137.0
-offset_bottom = -11.0
+offset_left = -93.0
+offset_top = -48.0
+offset_right = 103.0
+offset_bottom = -15.0
 grow_horizontal = 2
 size_flags_vertical = 0
 text = "I am a goblin speech text
@@ -353,6 +353,8 @@ text = "I am a goblin speech text
 label_settings = SubResource("LabelSettings_bxmxf")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 131
 
 [node name="Wand" type="Marker2D" parent="."]
 position = Vector2(-10, 4)
@@ -453,6 +455,7 @@ box_moving_state = NodePath(".")
 script = ExtResource("11_66l13")
 
 [node name="StateDebugText" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -47.0
 offset_right = 20.0
@@ -473,6 +476,7 @@ shape = SubResource("RectangleShape2D_gybas")
 
 [node name="InteractionUI" type="CanvasLayer" parent="."]
 layer = 5
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="InteractionUI"]
 anchors_preset = 3
@@ -502,7 +506,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.492178, 0.30669, 1.92523e-07, 1)
-theme_override_fonts/font = ExtResource("12_utob8")
+theme_override_fonts/font = ExtResource("2_v2wsf")
 theme_override_font_sizes/font_size = 12
 text = "Press E to pick up item.
 "
@@ -521,7 +525,7 @@ offset_top = 564.0
 offset_right = -122.5
 offset_bottom = 575.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("12_utob8")
+theme_override_fonts/font = ExtResource("2_v2wsf")
 theme_override_font_sizes/font_size = 10
 text = "INVENTORY
 "
@@ -530,7 +534,7 @@ horizontal_alignment = 1
 [node name="ColorRect" type="ColorRect" parent="Inventory"]
 offset_left = 3.0
 offset_top = 577.0
-offset_right = 315.0
+offset_right = 265.0
 offset_bottom = 637.0
 color = Color(0.470588, 0.317647, 0.0901961, 0.345098)
 
@@ -539,6 +543,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -572,6 +577,9 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_kwouj")
 theme_override_constants/separation = 51
 script = ExtResource("15_t41e4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [connection signal="timeout" from="MarkerCreationTimer" to="." method="_on_marker_creation_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

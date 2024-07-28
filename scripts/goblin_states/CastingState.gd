@@ -7,12 +7,11 @@ var goblin = null
 
 func enter() -> void:
 	super()
-	print('casting')
 	goblin = parent as Goblin
 	debug.text = name
 	parent.velocity = Vector2.ZERO
 	timer = 0.8
-	begin_casting_animation(goblin)	
+	begin_casting_animation()	
 	
 func exit() -> void:
 	debug.text = ""
@@ -45,7 +44,7 @@ func process_physics(delta: float) -> State:
 		timer -= delta
 		return null
 	
-func begin_casting_animation(goblin: Goblin) -> void:
+func begin_casting_animation() -> void:
 	match goblin.last_direction:
 			DIRECTION.UP:
 				goblin.sprite.flip_h = false
@@ -80,11 +79,12 @@ func create_trail():
 	get_tree().get_root().add_child(marker)
 
 func cast_sound():
-	var goblin = parent as Goblin	
-	const SOUND_DISTANCE = 16
+	const SOUND_DISTANCE = 20
 	const DISTANCE_MODIFIER = 8
 	var marker = goblin_marker.instantiate()
 	marker.position = parent.global_position
+	marker.scale.x = 3.0
+	marker.scale.y = 3.0
 	match goblin.last_direction:
 		DIRECTION.UP:
 			marker.position.y -= SOUND_DISTANCE * DISTANCE_MODIFIER
@@ -156,7 +156,7 @@ func cast_freeze() -> void:
 func cast_spell(spell: CASTABLE) -> void:
 	match spell:
 		CASTABLE.NONE:
-			print("No spell has been selected. Why are we casting?")
+			print_debug("No spell has been selected. Why are we casting?")
 		CASTABLE.SOUND:
 			cast_sound()
 		CASTABLE.BLINDNESS:
@@ -170,5 +170,5 @@ func cast_spell(spell: CASTABLE) -> void:
 		CASTABLE.FIREBALL:
 			cast_fireball()
 		_:
-			print("Unknown spell selected. A bug.")
+			print_debug("Unknown spell selected. A bug.")
 
