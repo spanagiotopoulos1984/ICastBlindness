@@ -17,10 +17,15 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 # A variable to check if the goblin is inside a box or not.
 @export var is_boxed : bool = false
 
+# A variable to check if the goblin is inside a box or not.
+@export var is_near_box: bool = false
+
+var nearest_box: Node2D = null
+
 @export var spell_to_cast: CASTABLE = CASTABLE.NONE
 
 # The following vavriables are used by the state machine, so we can change
-# easily between states, and interact diferently based on the current node
+# easily between stblindness_spellates, and interact diferently based on the current node
 # state.
 @onready var state_machine:GoblinStateMachine = $GolbinStateMachine
 
@@ -34,6 +39,8 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 @onready var speech_label: Label = $Speech
 
 @onready var spellbook = $SpellBook/ColorRect2/SpellContainer
+
+@onready var trashed_box = preload("res://scenes/trashed_box.tscn")
 
 # Ready is called when the node is initialized. The _ in this case means it is
 # a pre-built class.
@@ -76,16 +83,22 @@ func _on_area_2d_area_entered(area) -> void:
 		if Global.get_percentage() > 0.9:
 			speak('He he he he', 1.0)
 		is_in_shadows = true
-	elif area.get_parent().name == "Gnome" and not is_in_shadows:
+	elif area.get_parent().name == "Gnome" and not (is_in_shadows or is_boxed):
 		speak('Gnome chasing me!', 1.0)
-	elif area.get_parent().name == "Gnome" and is_in_shadows:
+	elif area.get_parent().name == "Gnome" and (is_in_shadows or is_boxed):
 		speak('Gnome can\'t see me here!', 1.0)
+	elif area.is_in_group('Box'):
+		is_near_box=true
+		nearest_box = area.get_parent()
 
 func _on_area_2d_area_exited(area) -> void:
 	if area.get_parent().name == "ShadowAreas":
 		is_in_shadows = false
-	elif area.get_parent().name == "Gnome":
+	elif area.get_parent().name == "Gnome" and not (is_in_shadows or is_boxed):
 		speak('Bye bye gnome!', 1.0)
+	elif area.is_in_group('Box'):
+		is_near_box=false
+		nearest_box = null
 
 func is_spell_aquired() -> bool:
 	var spell_aquired = Global.spells_aquired[spell_to_cast]
@@ -101,3 +114,15 @@ func have_spell_ingredients():
 
 func can_cast_spell() -> bool:
 	return is_spell_aquired() and have_spell_ingredients()
+
+func enter_the_box() -> void:
+	if nearest_box:
+		is_boxed = true
+		nearest_box.queue_free()
+
+func create_trash_box() -> void:
+	is_boxed = false
+	var instance_box = trashed_box.instantiate()
+	instance_box.position = global_position
+	get_tree().get_root().add_child(instance_box)
+	speak('Ooops, I brokes it.', 2.0)

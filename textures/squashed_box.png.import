@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://70s68bivr5vm"
-path="res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"
+uid="uid://cvx71f2g8k1ch"
+path="res://.godot/imported/squashed_box.png-5827083fe180a148d08c132f60c3a07f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ItemsAndEffects/tingle.png"
-dest_files=["res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"]
+source_file="res://textures/squashed_box.png"
+dest_files=["res://.godot/imported/squashed_box.png-5827083fe180a148d08c132f60c3a07f.ctex"]
 
 [params]
 

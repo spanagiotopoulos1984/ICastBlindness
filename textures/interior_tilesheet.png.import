@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://70s68bivr5vm"
-path="res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"
+uid="uid://cns1bnjvyhhrj"
+path="res://.godot/imported/interior_tilesheet.png-22a47e99b7b963b9e47e41f2b4a681e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ItemsAndEffects/tingle.png"
-dest_files=["res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"]
+source_file="res://textures/interior_tilesheet.png"
+dest_files=["res://.godot/imported/interior_tilesheet.png-22a47e99b7b963b9e47e41f2b4a681e8.ctex"]
 
 [params]
 

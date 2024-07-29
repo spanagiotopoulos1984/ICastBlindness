@@ -48,8 +48,13 @@ func process_input(_event: InputEvent) -> State:
 			return hiding_moving_state
 		else:
 			return moving_state
+	elif Input.is_action_just_pressed("pick_up_item") and goblin.is_near_box:
+		parent.animationPlayer.play('Box_Walk_Down')
+		goblin.enter_the_box()
+		return box_idle_state
 	else:
 		return null
+	
 		
 func process_frame(_delta: float) -> State:
 	return null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bukq8oglhq7xv"]
+[gd_scene load_steps=42 format=3 uid="uid://bukq8oglhq7xv"]
 
 [ext_resource type="Script" path="res://scripts/Goblin.gd" id="1_t2vgp"]
 [ext_resource type="Texture2D" uid="uid://b7udmbvjq2kwj" path="res://textures/spritesheets/goblin.png" id="2_kxsi4"]
@@ -28,6 +28,96 @@ shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
 size = Vector2(4, 14)
+
+[sub_resource type="Animation" id="Animation_644tp"]
+resource_name = "Box_Walk_Down"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 12), Vector2i(4, 13), Vector2i(4, 14), Vector2i(4, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_qxaau"]
+resource_name = "Box_Walk_Down_Right"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 12), Vector2i(3, 13), Vector2i(3, 14), Vector2i(3, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_lkj1n"]
+resource_name = "Box_Walk_Right"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 12), Vector2i(2, 13), Vector2i(2, 14), Vector2i(2, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_ueknb"]
+resource_name = "Box_Walk_Up"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 12), Vector2i(0, 13), Vector2i(0, 14), Vector2i(0, 15)]
+}
+
+[sub_resource type="Animation" id="Animation_ju3sw"]
+resource_name = "Box_Walk_Up_Right"
+length = 0.8
+loop_mode = 1
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00217629, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 12), Vector2i(1, 13), Vector2i(1, 14), Vector2i(1, 15)]
+}
 
 [sub_resource type="Animation" id="Animation_hh4si"]
 resource_name = "Casting_Down"
@@ -308,6 +398,11 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbgmm"]
 _data = {
+"Box_Walk_Down": SubResource("Animation_644tp"),
+"Box_Walk_Down_Right": SubResource("Animation_qxaau"),
+"Box_Walk_Right": SubResource("Animation_lkj1n"),
+"Box_Walk_Up": SubResource("Animation_ueknb"),
+"Box_Walk_Up_Right": SubResource("Animation_ju3sw"),
 "Casting_Down": SubResource("Animation_hh4si"),
 "Casting_Down_Right": SubResource("Animation_pnoe4"),
 "Casting_Right": SubResource("Animation_x0126"),
@@ -367,8 +462,8 @@ shape = SubResource("RectangleShape2D_gybas")
 z_index = 1
 texture = ExtResource("2_kxsi4")
 hframes = 5
-vframes = 12
-frame = 44
+vframes = 16
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

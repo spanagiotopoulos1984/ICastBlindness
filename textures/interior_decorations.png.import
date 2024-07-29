@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://70s68bivr5vm"
-path="res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"
+uid="uid://bslm6wjq6kjky"
+path="res://.godot/imported/interior_decorations.png-7e0375b295540e1eb314a0420a90e86d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/ItemsAndEffects/tingle.png"
-dest_files=["res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"]
+source_file="res://textures/interior_decorations.png"
+dest_files=["res://.godot/imported/interior_decorations.png-7e0375b295540e1eb314a0420a90e86d.ctex"]
 
 [params]
 
