@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk1d25yj3ddp6"
-path="res://.godot/imported/stop.png-0115d3195f695be09cdb114864a5a161.ctex"
+uid="uid://tuxkhwt376dr"
+path="res://.godot/imported/lamp_stand.png-6166f9327cc4a327b30a1b687923f448.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/stop.png"
-dest_files=["res://.godot/imported/stop.png-0115d3195f695be09cdb114864a5a161.ctex"]
+source_file="res://textures/itemsAndEffects/lamp_stand.png"
+dest_files=["res://.godot/imported/lamp_stand.png-6166f9327cc4a327b30a1b687923f448.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dh3dp6tuy6o8b"]
 
-[ext_resource type="Texture2D" uid="uid://v4ywb7feciie" path="res://textures/box.png" id="1_7p0tf"]
-[ext_resource type="Texture2D" uid="uid://dnwxqvik5qkl7" path="res://textures/ItemsAndEffects/pointer.png" id="2_wrg78"]
+[ext_resource type="Texture2D" uid="uid://v4ywb7feciie" path="res://textures/itemsAndEffects/box.png" id="1_7p0tf"]
+[ext_resource type="Texture2D" uid="uid://dnwxqvik5qkl7" path="res://textures/itemsAndEffects/pointer.png" id="2_wrg78"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ir468"]
 radius = 56.1427

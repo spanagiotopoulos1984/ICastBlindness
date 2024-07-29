@@ -139,8 +139,11 @@ func cast_unlock()-> void:
 	Global.spell_casted.emit(CASTABLE.UNLOCK)
 	
 func cast_dispell()-> void:
-	print("DISPELL!")
-	Global.spell_casted.emit(CASTABLE.DISPELL)
+	var goblin = parent as Goblin
+	if goblin.in_sign_dispell_range:	
+		Global.spell_casted.emit(CASTABLE.DISPELL)
+	else:
+		goblin.speak('No waste prettious incrediments!',2.5)
 	
 func cast_fireball()-> void:
 	print("FIREBALL!")

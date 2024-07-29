@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bslm6wjq6kjky"
-path="res://.godot/imported/interior_decorations.png-7e0375b295540e1eb314a0420a90e86d.ctex"
+uid="uid://cchq8ryunrsbf"
+path="res://.godot/imported/interior_items.png-36a8b2304e53e42a400f68e9247900a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/interior_decorations.png"
-dest_files=["res://.godot/imported/interior_decorations.png-7e0375b295540e1eb314a0420a90e86d.ctex"]
+source_file="res://textures/tilemaps/interior_items.png"
+dest_files=["res://.godot/imported/interior_items.png-36a8b2304e53e42a400f68e9247900a1.ctex"]
 
 [params]
 

@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="ICastBlindness"
-run/main_scene="res://scenes/maps/test_map.tscn"
+run/main_scene="res://scenes/maps/start.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/Global.gd"
+Global="*res://scripts/global/Global.gd"
+SceneManager="*res://scripts/global/SceneManager.gd"
 
 [display]
 

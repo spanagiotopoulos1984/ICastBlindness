@@ -12,17 +12,21 @@ const CASTABLE = ENUM.CASTABLE_SPELL
 @export var last_direction: DIRECTION =  DIRECTION.DOWN
 
 # A variable to check if the goblin is in shadows or not.
-@export var is_in_shadows : bool = false
+var is_in_shadows : bool = false
 
 # A variable to check if the goblin is inside a box or not.
-@export var is_boxed : bool = false
+var is_boxed : bool = false
 
 # A variable to check if the goblin is inside a box or not.
-@export var is_near_box: bool = false
+var is_near_box: bool = false
 
+# A variable to see is we are within range to dispell
+var in_sign_dispell_range = false
+
+# Keep the nearest box here
 var nearest_box: Node2D = null
 
-@export var spell_to_cast: CASTABLE = CASTABLE.NONE
+var spell_to_cast: CASTABLE = CASTABLE.NONE
 
 # The following vavriables are used by the state machine, so we can change
 # easily between stblindness_spellates, and interact diferently based on the current node
@@ -45,6 +49,9 @@ var nearest_box: Node2D = null
 # Ready is called when the node is initialized. The _ in this case means it is
 # a pre-built class.
 func _ready() -> void:
+	# Connet the SceneManager, so we can control player spawn between
+	# areas
+	SceneManager.on_player_spawn.connect(_on_spawn)
 	state_machine.init(self)
 	# Set this goblin reference to the Global script
 	Global.set_golbin_reference(self)
@@ -52,6 +59,11 @@ func _ready() -> void:
 	# Make speech text invisible and initialize it as empty.
 	speech_label.text=""
 	speech_label.visible=false
+
+func _on_spawn(position: Vector2, direction:String):
+	global_position = position
+	animationPlayer.play("WALK_"+direction)
+	animationPlayer.stop()
 
 # Used when an input is not consumed by a handler, so it can be propagated to
 # the state machine.
@@ -89,6 +101,10 @@ func _on_area_2d_area_entered(area) -> void:
 		speak('Gnome can\'t see me here!', 1.0)
 	elif area.is_in_group('Box'):
 		is_near_box=true
+		nearest_box = area.get_parent()
+	elif area.name == 'VPDInteractionArea':
+		in_sign_dispell_range = true
+		speak('Throated agains! Needs to bye bye magic, find scroll somewhere!',2.5)
 		nearest_box = area.get_parent()
 
 func _on_area_2d_area_exited(area) -> void:

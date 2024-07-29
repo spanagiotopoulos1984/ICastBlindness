@@ -16,6 +16,11 @@ func _ready():
 	 #If no spell_id has been set (it is the default -1), destroy the item.
 	 #So as to avoid bugs. Just print a debug message!
 	if spell_id != -1 and not Engine.is_editor_hint() :
+		# Check if it has been picked up. If it has, disable and set invisible
+		if Global.SPELLS[spell_id]:
+			set_process(false)
+			icon_sprite.visible = false
+			
 		var texture_path = Global.SPELLS[spell_id]['spell_texture']
 		icon_sprite.texture = load(texture_path)
 		

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bsxkplh3lpdr4"]
 
-[ext_resource type="Texture2D" uid="uid://dwp3xsdxtsjfj" path="res://textures/trashed_box.png" id="1_3vbbe"]
+[ext_resource type="Texture2D" uid="uid://dwp3xsdxtsjfj" path="res://textures/itemsAndEffects/trashed_box.png" id="1_3vbbe"]
 
 [node name="TrashedBox" type="Sprite2D"]
 texture = ExtResource("1_3vbbe")

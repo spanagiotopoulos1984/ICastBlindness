@@ -42,11 +42,14 @@ func _process(_delta):
 
 func pick_up_item() -> void:
 	if Global.goblin_node:
-		# Add item to inventory
-		Global.add_inventory_item(item, item_quantity)
+		# Disable the node, so no more interactions are possible
+		set_process(false)
 		
 		# Make the icon invisible (to signify it's been picked up
 		icon_sprite.visible = false
+		
+		# Add item to inventory
+		Global.add_inventory_item(item, item_quantity)
 		
 		# Play the tingle animation (so player has feedback)
 		tingle.visible=true
