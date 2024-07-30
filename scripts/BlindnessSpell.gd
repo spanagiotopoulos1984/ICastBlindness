@@ -1,7 +1,7 @@
 class_name BlindnessSpellProjective
 extends Area2D
 
-var speed : float = 100.0
+var speed : float = 150.0
 var direction : Vector2
 
 @onready var  animation_player = $AnimationPlayer

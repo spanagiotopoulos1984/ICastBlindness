@@ -46,6 +46,13 @@ var spell_to_cast: CASTABLE = CASTABLE.NONE
 
 @onready var trashed_box = preload("res://scenes/trashed_box.tscn")
 
+var nearest_door: Area2D
+
+var is_near_a_locked_door: bool  = false
+
+@onready var speech_timer = $SpeechTimer
+
+
 # Ready is called when the node is initialized. The _ in this case means it is
 # a pre-built class.
 func _ready() -> void:
@@ -62,7 +69,7 @@ func _ready() -> void:
 
 func _on_spawn(position: Vector2, direction:String):
 	global_position = position
-	animationPlayer.play("WALK_"+direction)
+	animationPlayer.play("NORMAL_WALK_"+direction)
 	animationPlayer.stop()
 
 # Used when an input is not consumed by a handler, so it can be propagated to
@@ -77,7 +84,9 @@ func speak(text:String, delay:float) -> void:
 	speech_label.text=text
 	speech_label.visible=true	
 
-	await get_tree().create_timer(delay).timeout
+	speech_timer.start()
+	await speech_timer.timeout
+	
 	speech_label.text=""
 	speech_label.visible=false
 
@@ -90,6 +99,7 @@ func _on_marker_creation_timer_timeout() -> void:
 	goblin_state_machine.create_trail()
 
 func _on_area_2d_area_entered(area) -> void:
+	print(area.name,' of ',area.get_parent().name)
 	if area.get_parent().name == "ShadowAreas":
 		# Do not spam this all the time. 20% of times is okay I think
 		if Global.get_percentage() > 0.9:
@@ -106,6 +116,9 @@ func _on_area_2d_area_entered(area) -> void:
 		in_sign_dispell_range = true
 		speak('Throated agains! Needs to bye bye magic, find scroll somewhere!',2.5)
 		nearest_box = area.get_parent()
+	elif area.is_in_group('Doors'):
+		is_near_a_locked_door = true
+		nearest_door = area
 
 func _on_area_2d_area_exited(area) -> void:
 	if area.get_parent().name == "ShadowAreas":
@@ -115,6 +128,9 @@ func _on_area_2d_area_exited(area) -> void:
 	elif area.is_in_group('Box'):
 		is_near_box=false
 		nearest_box = null
+	elif area.is_in_group('Doors'):
+		is_near_a_locked_door = false
+		nearest_door = null
 
 func is_spell_aquired() -> bool:
 	var spell_aquired = Global.spells_aquired[spell_to_cast]
@@ -131,6 +147,23 @@ func have_spell_ingredients():
 func can_cast_spell() -> bool:
 	return is_spell_aquired() and have_spell_ingredients()
 
+func unlock_door() -> void:
+	if nearest_door:
+		match nearest_door.name:
+			"Door1":
+				Global.village_doors_unlocked[0] = true
+			"Door2":
+				Global.village_doors_unlocked[1] = true	
+			"Door3":
+				Global.village_doors_unlocked[2] = true
+		nearest_door.queue_free()
+		speak('Knocks-Knocks! Bye-bye door!', 2.5)
+
+func on_captured() -> void:	
+	for i in range(Global.ITEMS.size()):
+		Global.ITEMS[i]['item_quantity'] = Global.ITEMS[i]['item_quantity'] /2 
+	get_tree().reload_current_scene()
+
 func enter_the_box() -> void:
 	if nearest_box:
 		is_boxed = true
@@ -142,3 +175,8 @@ func create_trash_box() -> void:
 	instance_box.position = global_position
 	get_tree().get_root().add_child(instance_box)
 	speak('Ooops, I brokes it.', 2.0)
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == 'Gnome':
+		on_captured()

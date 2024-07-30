@@ -23,4 +23,5 @@ func process_physics(delta: float) -> State:
 		gnome.is_blinded = false
 		return gnome_idle_state
 	else:
+		AudioPlayerScene.play_fx(AudioPlayerScene.blindness_effect)
 		return null

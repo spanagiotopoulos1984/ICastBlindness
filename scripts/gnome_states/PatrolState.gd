@@ -25,6 +25,7 @@ func process_physics(delta: float) -> State:
 		return blinded_state
 	
 	if gnome.is_detecting_goblin:
+		AudioPlayerScene.play_fx(AudioPlayerScene.gnome_alerted)
 		return chasing_state
 	else:
 		var gnome_parent = parent as Gnome

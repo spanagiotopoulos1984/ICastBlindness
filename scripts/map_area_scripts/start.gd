@@ -1,6 +1,7 @@
 extends Node2D
 
 func _ready():
+	AudioPlayerScene.play_level_music()
 	if SceneManager.spawn_area:
 		_on_level_spawn(SceneManager.spawn_area)	
 

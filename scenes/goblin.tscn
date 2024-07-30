@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://cem0odibxph4f" path="res://scenes/inventory_slot.tscn" id="14_g5kwa"]
 [ext_resource type="Script" path="res://scripts/spellbook_ui.gd" id="15_t41e4"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
+size = Vector2(4, 26.3939)
+
 [sub_resource type="LabelSettings" id="LabelSettings_bxmxf"]
 line_spacing = 4.0
 font = ExtResource("2_v2wsf")
@@ -25,9 +28,6 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0.637398, 0.695031, 0.752698, 0.160784)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gybas"]
-size = Vector2(4, 14)
 
 [sub_resource type="Animation" id="Animation_644tp"]
 resource_name = "Box_Walk_Down"
@@ -432,6 +432,19 @@ texture_filter = 1
 script = ExtResource("1_t2vgp")
 animationPlayer = NodePath("AnimationPlayer")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 4
+position = Vector2(1, 0.376027)
+scale = Vector2(6.97215, 1.24089)
+shape = SubResource("RectangleShape2D_gybas")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 4
+shape = SubResource("RectangleShape2D_gybas")
+
 [node name="Speech" type="Label" parent="."]
 z_index = 10
 anchors_preset = 5
@@ -454,16 +467,11 @@ justification_flags = 131
 [node name="Wand" type="Marker2D" parent="."]
 position = Vector2(-10, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 4
-shape = SubResource("RectangleShape2D_gybas")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_kxsi4")
 hframes = 5
 vframes = 16
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -561,13 +569,6 @@ label_settings = SubResource("LabelSettings_tcevd")
 process_callback = 0
 wait_time = 0.5
 autostart = true
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 33
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-z_index = 4
-shape = SubResource("RectangleShape2D_gybas")
 
 [node name="InteractionUI" type="CanvasLayer" parent="."]
 layer = 5
@@ -676,6 +677,11 @@ script = ExtResource("15_t41e4")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[connection signal="timeout" from="MarkerCreationTimer" to="." method="_on_marker_creation_timer_timeout"]
+[node name="SpeechTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="MarkerCreationTimer" to="." method="_on_marker_creation_timer_timeout"]

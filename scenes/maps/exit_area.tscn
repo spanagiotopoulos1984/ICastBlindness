@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ExitArea.gd" id="1_eapkn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b3tp2"]
-size = Vector2(14.2038, 28.3585)
+size = Vector2(26.1019, 39.1792)
 
 [sub_resource type="GDScript" id="GDScript_pmx8n"]
 script/source = "extends Marker2D

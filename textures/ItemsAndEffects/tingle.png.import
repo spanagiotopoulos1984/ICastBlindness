@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://70s68bivr5vm"
-path="res://.godot/imported/tingle.png-b44d8fa412343737c6310d5124cdbb25.ctex"
+path="res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/itemsAndEffects/tingle.png"
-dest_files=["res://.godot/imported/tingle.png-b44d8fa412343737c6310d5124cdbb25.ctex"]
+source_file="res://textures/ItemsAndEffects/tingle.png"
+dest_files=["res://.godot/imported/tingle.png-3500e4770326473cebe168a71b759c0b.ctex"]
 
 [params]
 

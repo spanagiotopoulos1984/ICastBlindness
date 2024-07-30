@@ -21,14 +21,14 @@ script = ExtResource("1_m560i")
 [node name="Exits" type="Node" parent="."]
 
 [node name="ToForestMain" parent="Exits" instance=ExtResource("2_lo2i5")]
-position = Vector2(642, 329)
+position = Vector2(651, 330)
 scale = Vector2(1, 2.36)
 destination_level = "forest_main"
 destination_door = "ToForestLeft"
 spawn_direction = "RIGHT"
 
 [node name="SpawnPoint" parent="Exits/ToForestMain" index="1"]
-position = Vector2(-24, 0)
+position = Vector2(-37, 0)
 scale = Vector2(1, 0.508475)
 
 [node name="TileMap" type="TileMap" parent="."]

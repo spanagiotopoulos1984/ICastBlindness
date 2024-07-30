@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bpa2ubly3r5jb"]
+[gd_scene load_steps=13 format=3 uid="uid://bpa2ubly3r5jb"]
 
 [ext_resource type="Script" path="res://scripts/map_area_scripts/village.gd" id="1_qys2x"]
 [ext_resource type="PackedScene" uid="uid://tmwwnddwi42m" path="res://scenes/maps/exit_area.tscn" id="2_gyseb"]
@@ -26,11 +26,96 @@ _data = {
 }
 point_count = 17
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t7vb1"]
+
 [node name="Village" type="Node2D"]
 texture_filter = 3
 script = ExtResource("1_qys2x")
 
 [node name="Exits" type="Node" parent="."]
+
+[node name="ToBakery" parent="Exits" instance=ExtResource("2_gyseb")]
+z_index = 1
+position = Vector2(70, 92)
+destination_level = "bakery"
+destination_door = "ToVillage"
+
+[node name="CollisionShape2D" parent="Exits/ToBakery" index="0"]
+position = Vector2(5.94905, 5.41038)
+
+[node name="SpawnPoint" parent="Exits/ToBakery" index="1"]
+position = Vector2(6, 38)
+
+[node name="ColorRect" type="ColorRect" parent="Exits/ToBakery"]
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 32.0
+offset_bottom = 26.0
+scale = Vector2(0.68, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="ToHouse1" parent="Exits" instance=ExtResource("2_gyseb")]
+visible = false
+z_index = 1
+position = Vector2(307, -45)
+destination_level = "house1"
+destination_door = "ToVillage"
+
+[node name="CollisionShape2D" parent="Exits/ToHouse1" index="0"]
+position = Vector2(5.94905, 5.41038)
+
+[node name="SpawnPoint" parent="Exits/ToHouse1" index="1"]
+position = Vector2(6, 38)
+
+[node name="ColorRect" type="ColorRect" parent="Exits/ToHouse1"]
+offset_left = -7.0
+offset_top = -21.0
+offset_right = 33.0
+offset_bottom = 19.0
+scale = Vector2(0.68, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="ToHouse2" parent="Exits" instance=ExtResource("2_gyseb")]
+visible = false
+z_index = 1
+position = Vector2(643, 106)
+destination_level = "house2"
+destination_door = "ToVillage"
+
+[node name="CollisionShape2D" parent="Exits/ToHouse2" index="0"]
+position = Vector2(5.94905, 5.41038)
+
+[node name="SpawnPoint" parent="Exits/ToHouse2" index="1"]
+position = Vector2(6, 38)
+
+[node name="ColorRect" type="ColorRect" parent="Exits/ToHouse2"]
+offset_left = -7.0
+offset_top = -13.0
+offset_right = 33.0
+offset_bottom = 27.0
+scale = Vector2(0.68, 1)
+color = Color(0, 0, 0, 1)
+
+[node name="ToHouse3" parent="Exits" instance=ExtResource("2_gyseb")]
+visible = false
+z_index = 1
+position = Vector2(659, 364)
+destination_level = "house3"
+destination_door = "ToVillage"
+
+[node name="CollisionShape2D" parent="Exits/ToHouse3" index="0"]
+position = Vector2(5.94905, 5.41038)
+
+[node name="SpawnPoint" parent="Exits/ToHouse3" index="1"]
+position = Vector2(6, 38)
+
+[node name="ColorRect" type="ColorRect" parent="Exits/ToHouse3"]
+offset_left = -7.0
+offset_top = -13.0
+offset_right = 33.0
+offset_bottom = 27.0
+scale = Vector2(0.68, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="ToForestLeft" parent="Exits" instance=ExtResource("2_gyseb")]
 position = Vector2(-138, 354)
@@ -87,6 +172,18 @@ animationPlayer = NodePath("../Gnome/AnimationPlayer")
 [node name="Items" type="Node" parent="TileMap"]
 
 [node name="HideBox3" parent="TileMap/Items" instance=ExtResource("5_yiifa")]
+position = Vector2(259, 2)
+scale = Vector2(0.512, 0.512)
+
+[node name="HideBox6" parent="TileMap/Items" instance=ExtResource("5_yiifa")]
+position = Vector2(676, 172)
+scale = Vector2(0.512, 0.512)
+
+[node name="HideBox7" parent="TileMap/Items" instance=ExtResource("5_yiifa")]
+position = Vector2(684, 461)
+scale = Vector2(0.512, 0.512)
+
+[node name="HideBox5" parent="TileMap/Items" instance=ExtResource("5_yiifa")]
 position = Vector2(112, 550)
 scale = Vector2(0.512, 0.512)
 
@@ -254,6 +351,36 @@ rotation = -0.543587
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D3/PathFollow2D"]
 remote_path = NodePath("../../../TileMap/Gnome3")
 
+[node name="UnlockableDoorAreas" type="Node" parent="."]
+
+[node name="Door1" type="Area2D" parent="UnlockableDoorAreas" groups=["Doors"]]
+z_index = 1
+position = Vector2(313, -39)
+scale = Vector2(3.2, 3.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockableDoorAreas/Door1"]
+shape = SubResource("CircleShape2D_t7vb1")
+
+[node name="Door2" type="Area2D" parent="UnlockableDoorAreas" groups=["Doors"]]
+z_index = 1
+position = Vector2(652, 121)
+scale = Vector2(3.2, 3.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockableDoorAreas/Door2"]
+shape = SubResource("CircleShape2D_t7vb1")
+
+[node name="Door3" type="Area2D" parent="UnlockableDoorAreas" groups=["Doors"]]
+z_index = 1
+position = Vector2(665, 385)
+scale = Vector2(3.2, 3.76)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UnlockableDoorAreas/Door3"]
+shape = SubResource("CircleShape2D_t7vb1")
+
+[editable path="Exits/ToBakery"]
+[editable path="Exits/ToHouse1"]
+[editable path="Exits/ToHouse2"]
+[editable path="Exits/ToHouse3"]
 [editable path="Exits/ToForestLeft"]
 [editable path="TileMap/ShadowAreas/ShadowArea"]
 [editable path="TileMap/ShadowAreas/ShadowArea3"]

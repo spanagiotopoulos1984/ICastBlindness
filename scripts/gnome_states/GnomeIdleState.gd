@@ -33,6 +33,7 @@ func process_physics(delta: float) -> State:
 	if not gnome.is_detecting_goblin:
 		timer -= 1.0 * delta
 	else:
+		AudioPlayerScene.play_fx(AudioPlayerScene.gnome_alerted)
 		return chasing_state
 	if timer > 0:
 		return null

@@ -29,6 +29,7 @@ func process_physics(_delta: float) -> State:
 		return blinded_state
 	
 	if gnome.is_detecting_goblin:
+		AudioPlayerScene.play_fx(AudioPlayerScene.gnome_alerted)
 		return chasing_state
 	else:
 		if gnome.last_patrol_position.distance_to(gnome.global_position) <= MINIMUM_DISTANCE_TO_REACH:

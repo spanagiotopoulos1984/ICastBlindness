@@ -68,12 +68,12 @@ position = Vector2(379, 95)
 [node name="Exits" type="Node" parent="."]
 
 [node name="ToForestMain" parent="Exits" instance=ExtResource("6_r6m0c")]
-position = Vector2(323, -12)
+position = Vector2(322, -24)
 scale = Vector2(1.45268, -1.86518)
 destination_level = "forest_main"
 destination_door = "ToStart"
 
 [node name="SpawnPoint" parent="Exits/ToForestMain" index="1"]
-position = Vector2(0, -25.1987)
+position = Vector2(0, -29.4878)
 
 [editable path="Exits/ToForestMain"]

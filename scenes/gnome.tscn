@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/gnome_states/ReturnToPatrolState.gd" id="9_cgb8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjrjc"]
-radius = 16.0
+radius = 22.0227
 
 [sub_resource type="LabelSettings" id="LabelSettings_6frmb"]
 line_spacing = 2.0
@@ -337,12 +337,12 @@ fill_to = Vector2(0.91453, 0.982906)
 
 [node name="Gnome" type="CharacterBody2D" node_paths=PackedStringArray("animationPlayer") groups=["Gnome"]]
 texture_filter = 1
-collision_layer = 2
+collision_layer = 3
 script = ExtResource("1_mv3hp")
 speed = 80
 animationPlayer = NodePath("AnimationPlayer")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GnomeReachArea" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_mjrjc")

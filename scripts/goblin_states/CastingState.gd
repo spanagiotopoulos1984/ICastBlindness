@@ -107,12 +107,12 @@ func cast_sound():
 			marker.position.x += SOUND_DISTANCE * DISTANCE_MODIFIER
 			marker.position.y += SOUND_DISTANCE * DISTANCE_MODIFIER
 	get_tree().get_root().add_child(marker)
+	AudioPlayerScene.play_fx(AudioPlayerScene.boing)
 	Global.spell_casted.emit(CASTABLE.SOUND)
 	
 func cast_blindness():
 	var wand_marker = (parent as Goblin).wand_marker
 	var blindness_projectile : BlindnessSpellProjective = blindness_spell.instantiate()
-		
 	get_tree().get_root().add_child(blindness_projectile)
 	blindness_projectile.position = wand_marker.global_position
 	match (parent as Goblin).last_direction:
@@ -132,21 +132,27 @@ func cast_blindness():
 			blindness_projectile.direction = Vector2(-1,1)
 		DIRECTION.DOWN_RIGHT:
 			blindness_projectile.direction = Vector2(1,1)
+	AudioPlayerScene.play_fx(AudioPlayerScene.blindness)
 	Global.spell_casted.emit(CASTABLE.BLINDNESS)
 	
 func cast_unlock()-> void:
-	print("Click!")
-	Global.spell_casted.emit(CASTABLE.UNLOCK)
+	var goblin = parent as Goblin
+	if goblin.is_near_a_locked_door:
+		AudioPlayerScene.play_fx(AudioPlayerScene.knock_knock)
+		Global.spell_casted.emit(CASTABLE.UNLOCK)
+	else:
+		goblin.speak('Knock-knock what door?',2.5)
 	
 func cast_dispell()-> void:
 	var goblin = parent as Goblin
-	if goblin.in_sign_dispell_range:	
+	if goblin.in_sign_dispell_range:
+		AudioPlayerScene.play_fx(AudioPlayerScene.dispel)
 		Global.spell_casted.emit(CASTABLE.DISPELL)
 	else:
 		goblin.speak('No waste prettious incrediments!',2.5)
 	
 func cast_fireball()-> void:
-	print("FIREBALL!")
+	AudioPlayerScene.play_fx(AudioPlayerScene.fireball)
 	Global.spell_casted.emit(CASTABLE.FIREBALL)
 	
 func cast_freeze() -> void:
@@ -154,7 +160,8 @@ func cast_freeze() -> void:
 	var freeze_spell_projectile : FreezeTrapSpell = freeze_spell.instantiate()
 	get_tree().get_root().add_child(freeze_spell_projectile)
 	freeze_spell_projectile.position = wand_marker.global_position
-	Global.spell_casted.emit(CASTABLE.FIREBALL)
+	AudioPlayerScene.play_fx(AudioPlayerScene.freeze)
+	Global.spell_casted.emit(CASTABLE.FREEZE)
 
 func cast_spell(spell: CASTABLE) -> void:
 	match spell:

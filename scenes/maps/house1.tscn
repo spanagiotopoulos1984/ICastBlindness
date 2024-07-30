@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkhwj3orq123f"]
+[gd_scene load_steps=8 format=3 uid="uid://bkhwj3orq123f"]
 
 [ext_resource type="Texture2D" uid="uid://frhbtmn7eglp" path="res://textures/tilemaps/tileset.png" id="1_g3u53"]
 [ext_resource type="Texture2D" uid="uid://cchq8ryunrsbf" path="res://textures/tilemaps/interior_items.png" id="2_ygp70"]
+[ext_resource type="PackedScene" uid="uid://tmwwnddwi42m" path="res://scenes/maps/exit_area.tscn" id="3_yggob"]
+[ext_resource type="PackedScene" uid="uid://rv3nqnni1ehh" path="res://scenes/spell_item.tscn" id="4_mdqlq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7vthy"]
 texture = ExtResource("1_g3u53")
@@ -340,6 +342,18 @@ sources/1 = SubResource("TileSetAtlasSource_astdb")
 
 [node name="House1" type="Node2D"]
 
+[node name="Exits" type="Node" parent="."]
+
+[node name="ToVillage" parent="Exits" instance=ExtResource("3_yggob")]
+position = Vector2(332, 685)
+scale = Vector2(2.06227, 1.1464)
+destination_level = "village"
+destination_door = "ToHouse1"
+spawn_direction = "DOWN"
+
+[node name="SpawnPoint" parent="Exits/ToVillage" index="1"]
+position = Vector2(-0.484903, -43.615)
+
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 position = Vector2(-3, 0)
@@ -360,3 +374,9 @@ layer_3/tile_data = PackedInt32Array(-65537, 0, 0, -1, 131072, 1, 65535, 131072,
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/Area2D"]
 polygon = PackedVector2Array(306, 676, 305, 646, 245, 647, 245, 587, 214, 587, 214, 645, 0, 647, 3, 428, 212, 430, 214, 524, 243, 523, 243, 407, 4, 404, 4, 270, 230, 266, 229, 107, 200, 107, 199, 247, 1, 247, 7, -20, 199, -19, 200, 28, 227, 27, 227, -20, 378, -19, 381, 275, 470, 274, 469, 247, 403, 247, 405, -19, 616, -17, 614, 247, 525, 245, 525, 273, 614, 272, 616, 653, 439, 650, 441, 415, 564, 415, 564, 391, 414, 394, 409, 646, 363, 645, 363, 679, 641, 677, 646, -37, -21, -37, -20, 679)
+
+[node name="SpellItem" parent="." instance=ExtResource("4_mdqlq")]
+position = Vector2(304, 35)
+spell_id = 5
+
+[editable path="Exits/ToVillage"]

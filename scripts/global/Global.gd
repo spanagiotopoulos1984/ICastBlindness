@@ -131,6 +131,8 @@ var spells_aquired = [false,false,false,false,false,false]
 
 var goblin_node: Goblin  = null		
 
+var village_doors_unlocked = [false,false,false]
+
 var rng = RandomNumberGenerator.new()
 
 var is_village_way_open: bool = false 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3xl705xvtyrg"]
+[gd_scene load_steps=20 format=3 uid="uid://c3xl705xvtyrg"]
 
 [ext_resource type="PackedScene" uid="uid://tmwwnddwi42m" path="res://scenes/maps/exit_area.tscn" id="1_5jfkj"]
 [ext_resource type="Script" path="res://scripts/map_area_scripts/forest_main.gd" id="1_5siqm"]
@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bfnoq3u5082mu" path="res://scenes/inventory_item.tscn" id="5_72y7e"]
 [ext_resource type="PackedScene" uid="uid://rv3nqnni1ehh" path="res://scenes/spell_item.tscn" id="6_00tox"]
 [ext_resource type="PackedScene" uid="uid://cbx0abje6ceii" path="res://scenes/gnome.tscn" id="6_2siah"]
-[ext_resource type="Texture2D" uid="uid://bk1d25yj3ddp6" path="res://textures/itemsAndEffects/stop.png" id="8_gjxv3"]
 [ext_resource type="PackedScene" uid="uid://crdanbkgx6amw" path="res://scenes/shadow_area.tscn" id="8_xag4k"]
+[ext_resource type="Texture2D" uid="uid://bk1d25yj3ddp6" path="res://textures/itemsAndEffects/stop.png" id="8_yg7rb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kvoyq"]
 radius = 49.3964
@@ -27,6 +27,15 @@ fill_to = Vector2(0.940171, 0.042735)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ivmdl"]
 radius = 38.8343
+
+[sub_resource type="Gradient" id="Gradient_6uqop"]
+offsets = PackedFloat32Array(0, 0.54)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ekvrg"]
+gradient = SubResource("Gradient_6uqop")
+fill = 1
+fill_from = Vector2(0.530488, 0.597561)
 
 [sub_resource type="Gradient" id="Gradient_8helm"]
 offsets = PackedFloat32Array(0, 0.898113)
@@ -50,8 +59,8 @@ script = ExtResource("1_5siqm")
 [node name="Exits" type="Node" parent="."]
 
 [node name="ToForestLeft" parent="Exits" instance=ExtResource("1_5jfkj")]
-position = Vector2(3, 298)
-scale = Vector2(2.83306, 1.01305)
+position = Vector2(-10, 298)
+scale = Vector2(1.27609, 1.01305)
 destination_level = "forest_left"
 destination_door = "ToForestMain"
 spawn_direction = "LEFT"
@@ -61,7 +70,7 @@ position = Vector2(-0.663539, -14.5403)
 scale = Vector2(1, 1.02547)
 
 [node name="SpawnPoint" parent="Exits/ToForestLeft" index="1"]
-position = Vector2(12.3541, -14.8068)
+position = Vector2(31.3458, -6.90982)
 
 [node name="ToForestUp" parent="Exits" instance=ExtResource("1_5jfkj")]
 position = Vector2(338, -10)
@@ -69,11 +78,14 @@ scale = Vector2(-1.58706, 0.736148)
 destination_level = "forest_up"
 destination_door = "ToForestMain"
 
+[node name="CollisionShape2D" parent="Exits/ToForestUp" index="0"]
+position = Vector2(0.630096, 0)
+
 [node name="SpawnPoint" parent="Exits/ToForestUp" index="1"]
 position = Vector2(1.92289e-05, 63.8458)
 
 [node name="ToVillage" parent="Exits" instance=ExtResource("1_5jfkj")]
-position = Vector2(640, 290)
+position = Vector2(651, 290)
 destination_level = "village"
 destination_door = "ToForestMain"
 spawn_direction = "RIGHT"
@@ -89,6 +101,9 @@ position = Vector2(323, 654)
 scale = Vector2(1.8, 1)
 destination_level = "start"
 destination_door = "ToForestMain"
+
+[node name="CollisionShape2D" parent="Exits/ToStart" index="0"]
+position = Vector2(-1.66667, -1)
 
 [node name="SpawnPoint" parent="Exits/ToStart" index="1"]
 position = Vector2(0, -42)
@@ -214,9 +229,9 @@ shape = SubResource("CircleShape2D_kvoyq")
 
 [node name="VillagePassageDenier" type="Sprite2D" parent="TileMap"]
 texture_filter = 1
-position = Vector2(628, 295)
+position = Vector2(624, 294)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("8_gjxv3")
+texture = ExtResource("8_yg7rb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TileMap/VillagePassageDenier"]
 collision_layer = 3
@@ -239,6 +254,11 @@ collision_mask = 3
 position = Vector2(-29.0238, 1.38097)
 scale = Vector2(1.11905, 1)
 shape = SubResource("CircleShape2D_ivmdl")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMap/VillagePassageDenier"]
+position = Vector2(-2.5, -6.25)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ekvrg")
 
 [node name="Node" type="Node" parent="TileMap"]
 

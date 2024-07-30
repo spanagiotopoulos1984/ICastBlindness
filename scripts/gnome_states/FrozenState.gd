@@ -19,4 +19,5 @@ func process_physics(delta: float) -> State:
 		gnome.is_frozen = false
 		return gnome_idle_state
 	else:
+		AudioPlayerScene.play_fx(AudioPlayerScene.freeze_effect)
 		return null

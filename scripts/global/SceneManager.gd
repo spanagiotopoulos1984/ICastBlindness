@@ -5,6 +5,10 @@ const forest_main = preload("res://scenes/maps/forest_main.tscn")
 const forest_up = preload("res://scenes/maps/forest_up.tscn")
 const forest_left = preload("res://scenes/maps/forest_left.tscn")
 const village = preload("res://scenes/maps/village.tscn")
+const house1 = preload("res://scenes/maps/house1.tscn")
+const house2 = preload("res://scenes/maps/house2.tscn")
+const house3 = preload("res://scenes/maps/house3.tscn")
+const bakery = preload("res://scenes/maps/bakery.tscn")
 
 var spawn_area
 
@@ -24,10 +28,20 @@ func move_to_scene(scene: String, destination: String):
 			scene_to_load = forest_left	
 		'village':
 			scene_to_load = village
+		'house1':
+			scene_to_load = house1
+		'house2':
+			scene_to_load = house2
+		'house3':
+			scene_to_load = house3
+		'bakery':
+			scene_to_load = bakery
 			
 	if scene_to_load:
-		spawn_area = destination
+		TransitionScreen.transition()
+		await TransitionScreen.on_transition_finished
 		get_tree().change_scene_to_packed(scene_to_load)
+		spawn_area = destination
 
 func spawn_player(position: Vector2, direction: String):
 	on_player_spawn.emit(position,direction)

@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/global/Global.gd"
 SceneManager="*res://scripts/global/SceneManager.gd"
+AudioPlayerScene="*res://scenes/AudioPlayerScene.tscn"
+TransitionScreen="*res://scenes/maps/transition_screen.tscn"
 
 [display]
 
